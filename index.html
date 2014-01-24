@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<HTML>
+  <head>
+    <title>Kids Bowl Free</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UX-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <meta http-equiv="cleartype" content="on">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+    <link template="templates/templates.html">
+    <link rel="stylesheet" href="css/styles.css">
+  </head>
+  <body class="_logged-out"> <!-- Toggle _logged-in to display the logout controls -->
+    <!-- Facebook sharing SDK -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+    <div data-template="header"></div>
+    <div class="main">
+      <div class="container">
+        <div class="section hero _home">
+          <h1 class="section_title">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</h1>
+          <h2 class="section_subtitle">Over 5.2 million kids have participated!</h2>
+          <div class="hero_search form-validate-container">
+            <div class="form-validate-group">
+              <!-- The select options are filled using JavaScript -->
+              <select name="select-state" data-fill="location" data-dingo="form-validate generate-search-link">
+                <option>Select your State or Province</option>
+              </select>
+              <div class="form-validate-prompt">
+                <div class="form-validate-prompt_text">Select your State or Province</div>
+              </div>
+            </div>
+            <a href="#" class="btn _blue" data-dingo="form-validate-submit" id="search-link">Go</a>
+            <div class="hero_share">
+              <div class="hero_share_twitter">
+                <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+              </div>
+              <div class="hero_share_facebook">
+                <div class="fb-share-button" data-href="http://www.kidsbowlfree.com/" data-type="button_count"></div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- Section Hero -->
+        <div class="section">
+          <h1>Registered Kids Receive <em>2 FREE GAMES</em> Of Bowling Every Day All Summer Long, Valued At Over $500 Per Child!</h1>
+          <p>Select bowling centers and schools around the country are participating in the first ever Kids Bowl Free program. This program is designed by bowling centers to give back to the community and provide a safe, secure, and fun way for kids to spend time this summer.</p>
+          <p>Children whose age does not exceed a limit by a participating bowling center are eligible to register for 2 free games a day, all summer long, courtesy of the participating bowling centers along with the schools and organizations.</p>
+          <hr>
+          <h1 class="center"><em>We’ve been featured on ABC News &amp; Fox and Friends<em></h1>
+          <div class="carousel">
+            <div class="carousel-prev"></div>
+            <div class="carousel-next"></div>
+            <iframe width="630" height="398" src="//www.youtube.com/embed/NszZjwYjMwo" frameborder="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+    </div>
+    <script src="js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</HTML>
