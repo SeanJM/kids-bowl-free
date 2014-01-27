@@ -1,7 +1,7 @@
 <template name="header">
   <div class="header">
     <div class="container">
-      <div class="header_logo"></div>
+      <a class="header_logo" href="index.html"></a>
       <div class="header_right">
         <form class="header_susi _login" name="login">
           <input type="text" class="header_input" placeholder="Email">
@@ -21,7 +21,7 @@
           <div class="header_rep_abc"></div>
         </div>
       </div>
-      <div class="header_nav">
+      <div class="header_nav sticky">
         <div class="container"> <!-- For when the nav is fixed -->
           <div class="header_nav_primary">
             <a href="school.html" class="nav_item">Get Your School Involved</a>
@@ -35,4 +35,23 @@
       </div>
     </div> <!-- Container -->
   </div> <!-- Header -->
+</template>
+
+<template name="footer">
+  <div class="footer">
+    <div class="row">
+      <div class="g8 col1of3-sm">
+        <a class="btn" href="bowling-center-info.html"><i class="icon-info"></i>Information For Bowling Centers</a>
+      </div>
+      <div class="g8 col2of3-sm">
+        <a class="btn" href="btt-2013.html"><i class="icon-wave"></i>BTT 2013 Winners</a>
+      </div>
+      <div class="g8 col3of3-sm">
+        <a class="btn" href="tos.html"><i class="icon-tos"></i>Terms Of Use</a>
+      </div>
+    </div> <!-- Row -->
+    <div class="row">
+      <div class="footer-link">Have Questions? Call (888) 342 - 2594</div>
+    </div>
+  </div> <!-- Footer -->
 </template>

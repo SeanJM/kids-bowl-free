@@ -1,3 +1,7 @@
+String.prototype.repeat = function (times) {
+  return (new Array(times+1)).join(this);
+}
+
 /* Us States */
 
 var selectFillData = {
@@ -5,14 +9,17 @@ var selectFillData = {
     'Us': [
       'Alabama',
       'Alaska',
+      'American Samoa',
       'Arizona',
       'Arkansas',
       'California',
       'Colorado',
       'Connecticut',
       'Delaware',
+      'District of Columbia',
       'Florida',
       'Georgia',
+      'Guam',
       'Hawaii',
       'Idaho',
       'Illinois',
@@ -37,43 +44,40 @@ var selectFillData = {
       'New York',
       'North Carolina',
       'North Dakota',
+      'Northern Mariana Islands',
       'Ohio',
       'Oklahoma',
       'Oregon',
       'Pennsylvania',
+      'Puerto Rico',
       'Rhode Island',
       'South Carolina',
       'South Dakota',
       'Tennessee',
       'Texas',
+      'U.S. Virgin Islands',
       'Utah',
       'Vermont',
       'Virginia',
       'Washington',
       'West Virginia',
       'Wisconsin',
-      'Wyoming',
-      'District of Columbia',
-      'Puerto Rico',
-      'Guam',
-      'American Samoa',
-      'U.S. Virgin Islands',
-      'Northern Mariana Islands'
+      'Wyoming'
       ],
     'Canada': [
-      'Ontario',
-      'Quebec',
-      'British Columbia',
       'Alberta',
+      'British Columbia',
       'Manitoba',
-      'Saskatchewan',
-      'Nova Scotia',
       'New Brunswick',
       'Newfoundland and Labrador',
-      'Prince Edward Island',
       'Northwest Territories',
-      'Yukon',
-      'Nunavut'
+      'Nova Scotia',
+      'Nunavut',
+      'Ontario',
+      'Prince Edward Island',
+      'Quebec',
+      'Saskatchewan',
+      'Yukon'
     ]
   }
 };
@@ -606,7 +610,7 @@ function template(context) {
         return m;
       });
     },
-    init: function (options) {
+    init: function (callback) {
       function getData(string) {
         var contents = string.match(/^(\s+|)[a-zA-Z0-9_-]+(\s+|):(\s+|)([\s\S]*?$)/gm);
         var out = {};
@@ -679,6 +683,9 @@ function template(context) {
           }
           init(out);
         });
+        if (typeof callback === 'function') {
+          callback();
+        }
       });
     }
   }
@@ -877,16 +884,20 @@ function formValidate(el) {
         if (tag === 'input' || tag === 'textarea') {
           if (attr.match(/^zip(code|)$/)) {
             return 'zipCode';
+          } else if (attr.match(/^zippostal$/)) {
+            return 'zipPostal';
           } else if (attr.match(/^(confirm|)(new|old|current|)password$/)) {
             return 'password'
           } else if (attr.match(/^(confirm|)([a-zA-Z0-9_-]+|)email$/)) {
             return 'email';
-          } else if (attr.match(/^(confirm|)phone(number|)$/)) {
+          } else if (attr.match(/^(confirm|)([a-zA-Z0-9_-]+|)(phone)(number|)$/)) {
             return 'phone';
           } else if (attr.match(/^merchantid$/)) {
             return 'merchantId';
           } else if (attr.match(/^marketplaceid$/)) {
             return 'marketplaceId';
+          } else if (attr.match(/number/)) {
+            return 'number';
           } else {
             return 'text';
           }
@@ -905,7 +916,10 @@ function formValidate(el) {
             return (string.length > 0 && nullBool(string.match(/[a-zA-Z0-9_-]+/)));
           },
           zipCode: function () {
-            return (nullBool(string.match(/[0-9]{5}/)));
+            return (nullBool(string.match(/^[0-9]{5}$/)));
+          },
+          zipPostal: function () {
+            return (nullBool(string.match(/^([0-9]{5}|[a-zA-Z][0-9][a-zA-Z](\s|)[0-9][a-zA-Z][0-9])$/)));
           },
           email: function () {
             return (nullBool(string.match(/[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+\.([a-z]{2}|[a-z]{3})/)));
@@ -927,6 +941,9 @@ function formValidate(el) {
           },
           phone: function () {
             return (nullBool(string.replace(/\s|\(|\)|\-/g,'').match(/^([0-9]{7}|[0-9]{10})$/)));
+          },
+          number: function () {
+            return nullBool(string.match(/^[0-9\.\,]+$/));
           }
         }
       }; // Rules
@@ -936,11 +953,11 @@ function formValidate(el) {
         var prompt = el.closest('.form-validate-group').find('.form-validate-prompt');
         if (bool) {
           el.removeClass('form-validate');
-          label.addClass('label_is-fulfilled');
+          label.addClass('_fulfilled');
           animate(prompt).end();
         } else {
           el.addClass('form-validate');
-          label.removeClass('label_is-fulfilled');
+          label.removeClass('_fulfilled');
         }
       };
       // Confirmation field check, checks is first condition is truthy then
@@ -1023,16 +1040,18 @@ function selectFill() {
 };
 
 /*
-  Carousel
-  v1.0 by Sean MacIsaac
+  Carousel v1.1
+  Sean MacIsaac
   MIT License
 */
 
 function carousel(el) {
-  var container     = el.find('.carousel-item-container');
-  var items         = el.find('.carousel-item');
-  var index         = items.filter('._animated-in').index();
-  var selections    = el.find('.carousel-selections');
+  el = $(el);
+  var container = el.find('.carousel-item-container');
+  var items     = el.find('.carousel-item');
+  var index     = items.filter('._animated-in').index();
+  var nav       = el.find('.carousel-nav');
+  var navItem   = '<div class="carousel-nav-item" data-dingo="carouselNav"><div class="carousel-nav-item_face"></div></div>';
   return {
     select: function (newIndex) {
       if (newIndex > items.size()-1) {
@@ -1040,12 +1059,11 @@ function carousel(el) {
       } else if (newIndex < 0) {
         newIndex = items.size()-1;
       }
-      var activePill = selections.find('._animated-in');
-      var newPill    = selections.find('[data-dingo*="carouselSelect"]').eq(newIndex);
+      var activePill = nav.find('._animated-in');
+      var newPill    = nav.find('[data-dingo*="carouselNav"]').eq(newIndex);
       if (index > -1) {
-        animate(items.eq(index)).end(function () {
-          animate(items.eq(newIndex)).start();
-        });
+        animate(items.eq(index)).end()
+        animate(items.eq(newIndex)).start();
       } else {
         animate(items.eq(newIndex)).start();
       }
@@ -1053,12 +1071,58 @@ function carousel(el) {
       animate(newPill).start();
     },
     next: function () {
-      carousel(el).select(index+1)
+      carousel(el).select(index+1);
     },
     prev: function () {
-      carousel(el).select(index-1)
+      carousel(el).select(index-1);
     },
+    init: function () {
+      container.css('width',(items.size()*100) + '%');
+      items.css('width',(100/items.size()) + '%');
+      nav.append((new Array(items.size()+1)).join(navItem));
+      animate(nav.find('.carousel-nav-item').eq(0)).start();
+      animate(items.eq(0)).start();
+      dingo.on(nav.find('[data-dingo]'));
+    }
   }
+};
+
+function sticky() {
+  var scroll   = $(window).scrollTop();
+  var sticky   = '_is-sticky';
+  var stickyEl = $('.sticky');
+
+  function getTop(el) {
+    var top  = el.offset().top;
+    var attr = 'data-sticky-top';
+    if (typeof el.attr(attr) === 'string') {
+      return parseInt(el.attr(attr),10);
+    } else {
+      el.attr(attr,top);
+      return parseInt(top,10);
+    }
+  }
+
+  function stick(el) {
+    var top    = getTop(el);
+
+    if (scroll > top && !el.hasClass(sticky)) {
+      $(el).addClass(sticky);
+    } else if (scroll < top && $(el).hasClass(sticky)) {
+      $(el).removeClass(sticky);
+    }
+  }
+
+  function init() {
+    $(stickyEl).each(function () {
+      stick($(this));
+    });
+  }
+
+  if (!dingo.isMobile()) {
+    init();
+  }
+
 };
 
 var dingoEvents = {
@@ -1084,15 +1148,15 @@ var dingoEvents = {
     $('#search-link').attr('href',text);
   },
   carouselPrev: function (options) {
-    carousel($(options.which)).prev();
+    carousel(options.el.closest('.carousel')).prev();
   },
   carouselNext: function (options) {
-    carousel($(options.which)).next();
+    carousel(options.el.closest('.carousel')).next();
   },
-  carouselSelect: function (options) {
-    carousel($(options.which)).select(options.el.index());
+  carouselNav: function (options) {
+    carousel(options.el.closest('.carousel')).select(options.el.index());
   },
-}
+};
 
 dingo.click = {
   'form-validate-submit': function (options) {
@@ -1104,10 +1168,10 @@ dingo.click = {
   carouselPrev: function (options) {
     dingoEvents[options.dingo](options);
   },
-  carouselSelect: function (options) {
+  carouselNav: function (options) {
     dingoEvents[options.dingo](options);
   },
-}
+};
 
 dingo.change = {
   'form-validate': function (options) {
@@ -1116,11 +1180,26 @@ dingo.change = {
   'generate-search-link': function (options) {
     dingoEvents[options.dingo](options);
   }
-}
+};
+
+dingo.keyup = {
+  'form-validate': function (options) {
+    dingoEvents[options.dingo+'_keyup'](options);
+  }
+};
+
+dingo.scroll = {
+  window: function (event) {
+    sticky(event);
+  }
+};
 
 $(function () {
   dingo.init();
-  template().init();
+  template().init(function () {
+    sticky();
+  });
   selectFill();
+  carousel('.carousel').init();
   $('textarea,input').placeholder();
 });

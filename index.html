@@ -24,7 +24,9 @@
       js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
-    <div data-template="header"></div>
+    <div data-template="header">
+      active-page: home
+    </div>
     <div class="main">
       <div class="container">
         <div class="section hero _home">
@@ -57,16 +59,50 @@
           <p>Select bowling centers and schools around the country are participating in the first ever Kids Bowl Free program. This program is designed by bowling centers to give back to the community and provide a safe, secure, and fun way for kids to spend time this summer.</p>
           <p>Children whose age does not exceed a limit by a participating bowling center are eligible to register for 2 free games a day, all summer long, courtesy of the participating bowling centers along with the schools and organizations.</p>
           <hr>
-          <h1 class="center"><em>We’ve been featured on ABC News &amp; Fox and Friends<em></h1>
+          <h1 class="center"><em>We’ve been featured on ABC News &amp; Fox and Friends</em></h1>
           <div class="carousel">
-            <div class="carousel-prev"></div>
-            <div class="carousel-next"></div>
-            <iframe width="630" height="398" src="//www.youtube.com/embed/NszZjwYjMwo" frameborder="0" allowfullscreen></iframe>
+            <div class="carousel-prev" data-dingo="carouselPrev"></div>
+            <div class="carousel-next" data-dingo="carouselNext"></div>
+            <div class="carousel-frame">
+              <div class="carousel-items">
+                <div class="carousel-item-container">
+                  <div class="carousel-item">
+                    <iframe width="630" height="398" src="//www.youtube.com/embed/NszZjwYjMwo" frameborder="0" allowfullscreen></iframe>
+                  </div>
+                  <div class="carousel-item">
+                    <iframe src="//player.vimeo.com/video/61271482" width="630" height="398" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/61271482">KidsBowlFreeAfterShow</a> from <a href="http://vimeo.com/localdeals">Darin Spindler</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-nav"></div>
           </div>
+          <hr>
+          <h1 class="center">What People Are Saying</h1>
+          <div class="g8 col1of3 center">
+            <img class="testimonial_image" src="img/testimonials/testimonial_01.png">
+            <p class="testimonial_text">“Anxious to get bowling this summer (thanks to Kids Bowl Free and their family pass), but here is my little man a couple of years ago when we lived in FL. Thanks Kids Bowl Free for a great program!”</p>
+            <span class="testimonial_author">Heather Eline</span>
+            <span class="testimonial_location">Medford Lakes, NJ</span>
+          </div>
+          <div class="g8 col2of3 center">
+            <img class="testimonial_image" src="img/testimonials/testimonial_02.png">
+            <p class="testimonial_text">“We love Kids Bowl Free. It provides us with a fun family activity at a great price! My daughters love bowling so this is perfect!”</p>
+            <span class="testimonial_author">Jessica Goodwin</span>
+            <span class="testimonial_location">New Oxford, PA</span>
+          </div>
+          <div class="g8 col3of3 center">
+            <img class="testimonial_image" src="img/testimonials/testimonial_03.png">
+            <p class="testimonial_text">“My family and I love to bowl! I had my son's 7th birthday party at our local bowling alley. We had a great time and took lots and lots of pictures!”</p>
+            <span class="testimonial_author">Stephanie Lewis</span>
+            <span class="testimonial_location">St. Louis, MO</span>
+          </div>
+        </div> <!-- Section -->
+        <div data-template="footer">
+          active-page: home
         </div>
       </div>
-    </div>
-    <div class="footer">
+      <div class="copyright">&copy; 2014 Kids Bowl Free</div>
     </div>
     <script src="js/vendor/jquery-1.10.2.min.js"></script>
     <script src="js/script.js"></script>
