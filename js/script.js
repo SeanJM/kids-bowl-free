@@ -522,7 +522,7 @@ var dingo = {
 };
 
 /*
-  Version 1.0.0
+  Version 1.0.6
   MIT License
   by Sean MacIsaac & WizzSolutions (http://www.wizzsolutions.com)
 */
@@ -530,6 +530,16 @@ var dingo = {
 var template_store = {};
 var template_fn = {};
 function template(context) {
+  var name = '';
+  if (typeof context === 'string' && context.match(/^[a-zA-Z0-9_-]+$/)) {
+    name    = context;
+    context = template_store[name];
+    if (typeof context === 'object') {
+      context = context.content;
+    } else {
+      context = false;
+    }
+  }
   return {
     load: function (templateFile,callback) {
       function toObject(xml,i) {
@@ -574,7 +584,7 @@ function template(context) {
         init();
       }
     },
-    fill: function (object) {
+    get: function (object) {
       function convert(string) {
         if (nullBool(string.match(/\\/))) {
           return string.replace(/\\/,'');
@@ -582,6 +592,7 @@ function template(context) {
           return (object.hasOwnProperty(string))?object[string]:'';
         }
       }
+
       function condition(string) {
         var variable, alternate;
         var match = string.match(/\{\{([a-zA-Z0-9_-]+)\?([\S\s]*?)}}/);
@@ -597,6 +608,7 @@ function template(context) {
           return string;
         }
       }
+
       function fill(string) {
         var match = string.match(/(?:\{\{)([a-zA-Z0-9_-]+)(?:\}\})/);
         if (nullBool(match)) {
@@ -604,11 +616,31 @@ function template(context) {
         }
         return string;
       }
-      return context.replace(/\{\{[\?\\a-zA-Z0-9_-]+\}\}/g,function (m) {
-        m = condition(m);
-        m = fill(m);
-        return m;
-      });
+
+      function pass(processed) {
+        processed = $(processed);
+        // Pass to the template function
+        if (typeof template_fn[name] === 'function') {
+          template_fn[name](object,processed);
+        }
+        return processed;
+      }
+
+      function init() {
+        if (typeof context === 'string') {
+          return pass(
+            context.replace(/\{\{[\?\\a-zA-Z0-9_-]+\}\}/g,function (m) {
+              m = condition(m);
+              m = fill(m);
+              return m;
+            })
+          );
+        } else {
+          return context;
+        }
+      }
+
+      return init();
     },
     init: function (callback) {
       function getData(string) {
@@ -643,8 +675,8 @@ function template(context) {
 
       function load(callback) {
         var arr = [];
-        $('link[template]').each(function () {
-          arr.push($.trim($(this).attr('template')));
+        $('link[rel="template"]').each(function () {
+          arr.push($.trim($(this).attr('href')));
         });
         function loadIt(i) {
           $('<div/>').load(arr[i],function (a,b) {
@@ -662,13 +694,9 @@ function template(context) {
       /* Initializing the loading of the template */
 
       load(function () {
-        function init(object) {
-          if (typeof template_store[object.which] === 'object') {
-            var processed = $(template(template_store[object.which].content).fill(object.data));
-            // Pass to the template function
-            if (typeof template_fn[object.which] === 'function') {
-              template_fn[object.which](object,processed);
-            }
+        function append(object) {
+          var processed = template(object.which).get(object.data);
+          if (typeof processed === 'object') {
             object.el.replaceWith(processed);
             dingo.on(processed);
             dingo.on(processed.find('[data-dingo]'));
@@ -681,18 +709,18 @@ function template(context) {
             which : el.attr('data-template'),
             data  : getData(el.html())
           }
-          init(out);
+          append(out);
         });
         if (typeof callback === 'function') {
           callback();
         }
       });
-    }
+    } // Function init();
   }
 };
 
 template_fn.header = function (object,processed) {
-
+  processed.find('[data-nav="' + object['active-page'] + '"]').addClass('_active');
 }
 
 /* ------------- Animate v1.1.6 */
@@ -813,22 +841,39 @@ function animate(el) {
       }
     },
     scroll: function () {
-      var time   = 70;
-      var pos    = (el.offset().top-(el.height()/2))-($(window).height()/2);
-      var start  = window.pageYOffset;
-      var i      = 0;
-      var frames = 20;
+      function init() {
+        var time   = 300;
+        var pos    = (el.offset().top-(el.outerHeight()/2))-($(window).height()/2);
+        var start  = window.pageYOffset;
+        var i      = 1;
+        var frames = 300;
+        var timer  = '';
 
-      function s() {
-        i++;
-        window.scrollTo(0,(start-((start/frames)*i))+((pos/frames)*i));
-        if (i<frames) {
-          setTimeout(function () {
-            s();
-          },(time/frames));
+        function ceiling (a,b) {
+          if (a > b) {
+            return b;
+          } else {
+            return a;
+          }
         }
-      };
-      s();
+
+        function s() {
+          i = ceiling((i+1)*i,frames);
+          window.scrollTo(0,(start-((start/frames)*i))+((pos/frames)*i));
+          if (i<frames) {
+            timer = setTimeout(function () {
+              s();
+            },(time/frames));
+          } else {
+            clearTimeout(timer);
+          }
+        };
+        s();
+      } /* init */
+
+      if (el.size()) {
+        init();
+      }
     }
   }
 };
@@ -872,6 +917,34 @@ function formValidate(el) {
   }
 
   return {
+    captcha: function () {
+      // Returns a random number between min and max
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random
+      function getRandomArbitrary(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+      }
+      var captcha = [{
+        question: 'Is the sun hot or cold?',
+        answer: 'hot'
+      },{
+        question: 'What is 2+2?',
+        answer: '4'
+      },{
+        question: 'What is 2+3?',
+        answer: '5'
+      },{
+        question: 'What is the missing letter: B-wling?',
+        answer: 'o'
+      },{
+        question: 'What is the name of our planet?',
+        answer: 'Earth'
+      }][getRandomArbitrary(0,4)];
+
+      el.each(function () {
+        $(this).find('#form-validate-question').html(captcha.question);
+        $(this).find('[data-form-validate-question]').attr('data-form-validate-question',captcha.answer);
+      });
+    },
     confirm: function () {
 
       function region() {
@@ -898,6 +971,8 @@ function formValidate(el) {
             return 'marketplaceId';
           } else if (attr.match(/number/)) {
             return 'number';
+          } else if (attr.match(/^(captcha|form-validate-question)$/)) {
+            return 'captcha';
           } else {
             return 'text';
           }
@@ -909,6 +984,9 @@ function formValidate(el) {
       function rules (el) {
         var string = el.val()||'';
         return {
+          captcha: function () {
+            return (string.replace(/^\s+|\s+$/g,'').toLowerCase() === el.attr('data-form-validate-question').toLowerCase());
+          },
           text: function () {
             return (string.length > 0);
           },
@@ -1142,10 +1220,14 @@ var dingoEvents = {
   'form-validate-submit': function (options) {
     formValidate(options.el.closest('.form-validate-container')).submit(options.event);
   },
-  'generate-search-link': function (options) {
+  generateSearchLink: function (options) {
     /* Generates the search link to the search page when a selection is made */
     var text = 'search.html#' + options.el[0].value.replace(/\s/g,'-');
     $('#search-link').attr('href',text);
+  },
+  searchSelect: function (options) {
+    var selected = $('#' + options.el[0].value.replace(/\s/g,'-'));
+    animate(selected).scroll();
   },
   carouselPrev: function (options) {
     carousel(options.el.closest('.carousel')).prev();
@@ -1156,6 +1238,19 @@ var dingoEvents = {
   carouselNav: function (options) {
     carousel(options.el.closest('.carousel')).select(options.el.index());
   },
+  expander: function (options) {
+    var expander = options.el.closest('.expander');
+    var section  = expander.find('.expander_section').eq(0);
+    var btn      = expander.find('.expander_btn').eq(0);
+    expander.toggleClass('_active');
+    section.toggleClass('_active');
+    btn.toggleClass('_active');
+  },
+  text: function (options) {
+    var limit = parseInt(options.limit,10);
+    options.el.val(options.el.val().substr(0,limit));
+    $('[data-limit="' + options.el.attr('name') + '"]').html(limit - options.el.val().length)
+  }
 };
 
 dingo.click = {
@@ -1171,13 +1266,19 @@ dingo.click = {
   carouselNav: function (options) {
     dingoEvents[options.dingo](options);
   },
+  expander: function (options) {
+    dingoEvents[options.dingo](options);
+  }
 };
 
 dingo.change = {
   'form-validate': function (options) {
     dingoEvents[options.dingo + '_change'](options);
   },
-  'generate-search-link': function (options) {
+  generateSearchLink: function (options) {
+    dingoEvents[options.dingo](options);
+  },
+  searchSelect: function (options) {
     dingoEvents[options.dingo](options);
   }
 };
@@ -1185,6 +1286,9 @@ dingo.change = {
 dingo.keyup = {
   'form-validate': function (options) {
     dingoEvents[options.dingo+'_keyup'](options);
+  },
+  text: function (options) {
+    dingoEvents[options.dingo](options);
   }
 };
 
@@ -1202,4 +1306,5 @@ $(function () {
   selectFill();
   carousel('.carousel').init();
   $('textarea,input').placeholder();
+  formValidate($('form')).captcha();
 });
