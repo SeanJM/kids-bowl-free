@@ -23,8 +23,367 @@
     <div class="main">
       <div class="container">
         <div class="section">
-          <img src="http://maps.googleapis.com/maps/api/staticmap?center=Ottawa,ON&zoom=14&size=130x130&sensor=true&key=AIzaSyD5pjGWBbcvoe_t91E733iUJL10L6juv8o">
-          <h2>Fairview Lanes</h2>
+          <h1>Fairview Lanes</h1>
+          <h3>
+            21847 Lorain Rd,<br>
+            Park, OH, 44126<br>
+            (440) 331 - 3244</h3>
+          <hr>
+          <form class="g14 col1of2 form-validate-container">
+            <div class="registration-info">
+              If You’d Like To Register Your Child, You Can Complete The Form Below
+            </div>
+            <div class="alert-help">
+              This registration is valid only at the above bowling center and cannot be used at any other bowling center unless otherwise noted.
+            </div>
+            <div class="frame">
+              <div class="section">
+                <div class="row">
+                  <div class="row">
+                    <h2>Parent Account Information</h2>
+                    <p>All coupon notifications are sent via email to the parent of guardian on file. Please enter a valid email address otherwise notifications cannot be delivered.</p>
+                  </div>
+                  <div class="row">
+                    <div class="g12 col1of2-sm">
+                      <div class="form-validate-group">
+                        <label class="block" for="first-name">First Name<span class="form-validate-indicator"></span></label>
+                        <input class="block" type="text" name="first-name" data-dingo="form-validate">
+                        <div class="form-validate-prompt">
+                          <div class="form-validate-prompt_text">Enter A Valid First Name</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="g12 col2of2-sm">
+                      <div class="form-validate-group">
+                        <label class="block" for="last-name">Last Name<span class="form-validate-indicator"></span></label>
+                        <input class="block" type="text" name="last-name" data-dingo="form-validate">
+                        <div class="form-validate-prompt">
+                          <div class="form-validate-prompt_text">Enter A Valid Last Name</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!-- Row -->
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="last-name">Birthday (optional)</label>
+                      <p class="row">Enter your birth date and you may be eligible to receive additional coupons and special discounts on your birthday, from your local bowling center.</p>
+                      <div class="row">
+                        <div class="g12 col1of2-sm">
+                          <select class="block" data-fill="months">
+                            <option>Month</option>
+                          </select>
+                        </div>
+                        <div class="g12 col2of2-sm">
+                          <select class="block" data-fill="years">
+                            <option>Year</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- row -->
+                <div class="row-xl">
+                  <h2>Address</h2>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="street-address">Street Address<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="text" name="street-address" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Address</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="g12 col1of2-sm">
+                      <div class="form-validate-group">
+                        <label class="block" for="city">City<span class="form-validate-indicator"></span></label>
+                        <input class="block" type="text" name="city" data-dingo="form-validate">
+                        <div class="form-validate-prompt">
+                          <div class="form-validate-prompt_text">Enter A Valid City</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="g12 col2of2-sm">
+                      <div class="form-validate-group">
+                        <label class="block" for="select-state">State / Province<span class="form-validate-indicator"></span></label>
+                        <select class="block" name="select-state" data-fill="location" data-dingo="form-validate">
+                          <option>Select</option>
+                        </select>
+                        <div class="form-validate-prompt">
+                          <div class="form-validate-prompt_text">Select A State or Province</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!-- row -->
+                  <div class="row">
+                    <div class="g12 col1of2">
+                      <div class="form-validate-group">
+                        <label class="block" for="zip-postal">Zip / Postal Code<span class="form-validate-indicator"></span></label>
+                        <input class="block" type="text" name="zip-postal" data-dingo="form-validate">
+                        <div class="form-validate-prompt">
+                          <div class="form-validate-prompt_text">Enter A Valid Zip or Postal</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- row-xl -->
+                <div class="row-xl">
+                  <h2>Contact Information</h2>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="phone">Phone Number<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="text" name="phone" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Phone Number</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="email">Email Address<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="text" name="email" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Email</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="confirm-email">Confirm Email Address<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="text" name="confirm-email" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Email</div>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- row-xl -->
+                <div class="row-xl">
+                  <h2>Security</h2>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="password">Password<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="password" name="password" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Password</div>
+                      </div>
+                    </div>
+                    <span class="small">Must be atleast 6 characters long</span>
+                  </div>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="confirm-password">Confirm Password<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="password" name="confirm-password" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Password</div>
+                      </div>
+                    </div>
+                  </div>
+                </div> <!-- row-xl -->
+              </div> <!-- section -->
+              <div class="register_refer">
+                <p>Did someone you know refer you to Kids Bowl Free? If so, please enter their email address below:</p>
+                <input class="block" type="text" name="refer-email">
+              </div>
+              <div class="section">
+                <h2>Child Registration</h2>
+                <p>Please enter the names of the children that you would like to have participate in this program. If your children are older than the age requirement, please do not sign them up. Additional rows will be added automatically.</p>
+                <!--
+                  The age range function that automatically fills the select element
+                  for the children's year of birth is parsed from the following ele-
+                  ment's (register_age-requirement) attribute: data-age-range="15,4"
+
+                  the function is named: childrenAges()
+                 -->
+                <div class="register_age-requirement" data-age-range="15,4">
+                  <span class="register_age-requirement_title">Age Requirement</span>
+                  <span class="register_age-requirement_subtitle">15 and under</span>
+                </div>
+                <h3>Children</h3>
+                <div class="row register_child">
+                  <div class="g7 col1of3-sm">
+                    <label>First Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g7 col2of3-sm">
+                    <label>Last Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g10 col3of3-sm">
+                    <label class="block">Birthday</label>
+                    <div class="g13 col1of2-sm">
+                      <select class="block" data-fill="months">
+                        <option>Month</option>
+                      </select>
+                    </div>
+                    <div class="g11 col2of2-sm">
+                      <select class="block" data-fill="child-years">
+                        <option>Year</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> <!-- Row (child) -->
+                <div class="row register_child">
+                  <div class="g7 col1of3-sm">
+                    <label>First Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g7 col2of3-sm">
+                    <label>Last Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g10 col3of3-sm">
+                    <label class="block">Birthday</label>
+                    <div class="g13 col1of2-sm">
+                      <select class="block" data-fill="months">
+                        <option>Month</option>
+                      </select>
+                    </div>
+                    <div class="g11 col2of2-sm">
+                      <select class="block" data-fill="child-years">
+                        <option>Year</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> <!-- Row (child) -->
+                <div class="row register_child">
+                  <div class="g7 col1of3-sm">
+                    <label>First Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g7 col2of3-sm">
+                    <label>Last Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g10 col3of3-sm">
+                    <label class="block">Birthday</label>
+                    <div class="g13 col1of2-sm">
+                      <select class="block" data-fill="months">
+                        <option>Month</option>
+                      </select>
+                    </div>
+                    <div class="g11 col2of2-sm">
+                      <select class="block" data-fill="child-years">
+                        <option>Year</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> <!-- Row (child) -->
+                <div class="row register_child">
+                  <div class="g7 col1of3-sm">
+                    <label>First Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g7 col2of3-sm">
+                    <label>Last Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g10 col3of3-sm">
+                    <label class="block">Birthday</label>
+                    <div class="g13 col1of2-sm">
+                      <select class="block" data-fill="months">
+                        <option>Month</option>
+                      </select>
+                    </div>
+                    <div class="g11 col2of2-sm">
+                      <select class="block" data-fill="child-years">
+                        <option>Year</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> <!-- Row (child) -->
+                <div class="row register_child">
+                  <div class="g7 col1of3-sm">
+                    <label>First Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g7 col2of3-sm">
+                    <label>Last Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g10 col3of3-sm">
+                    <label class="block">Birthday</label>
+                    <div class="g13 col1of2-sm">
+                      <select class="block" data-fill="months">
+                        <option>Month</option>
+                      </select>
+                    </div>
+                    <div class="g11 col2of2-sm">
+                      <select class="block" data-fill="child-years">
+                        <option>Year</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> <!-- Row (child) -->
+                <div class="row register_child">
+                  <div class="g7 col1of3-sm">
+                    <label>First Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g7 col2of3-sm">
+                    <label>Last Name</label>
+                    <input type="text" class="block">
+                  </div>
+                  <div class="g10 col3of3-sm">
+                    <label class="block">Birthday</label>
+                    <div class="g13 col1of2-sm">
+                      <select class="block" data-fill="months">
+                        <option>Month</option>
+                      </select>
+                    </div>
+                    <div class="g11 col2of2-sm">
+                      <select class="block" data-fill="child-years">
+                        <option>Year</option>
+                      </select>
+                    </div>
+                  </div>
+                </div> <!-- Row (child) -->
+                <div class="row">
+                  <label class="block checkbox"><input type="checkbox" name="coupons"><strong>Yes, send me coupons weekly via email!</strong> Emails are sent when your coupons are ready, each Sunday for as long as the program runs.</label>
+                  <div class="form-validate-group">
+                    <label class="block checkbox"><input type="checkbox" data-dingo="form-validate" name="terms">By checking this box I agree to the terms of use and I certify I am the parent/guardian of these children, and they all live in my household.</label>
+                    <div class="form-validate-prompt">
+                      <div class="form-validate-prompt_text">To Continue, agree to the terms</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row center">
+                  <button class="btn _green" data-dingo="form-validate-submit"><i class="icon-check"></i>Sign up now!</button>
+                </div>
+              </div> <!-- section -->
+            </div>
+          </form> <!-- form -->
+          <div class="g10 col2of2">
+            <div class="frame expander _active">
+              <div class="frame_heading _red" data-dingo="expander">
+                <span class="expander_btn frame_heading_toggle _active"></span>
+                <span class="frame_heading_title">Times Available</span>
+              </div>
+              <div class="expander_section section _active">
+                <div class="row center">
+                  <div class="frame_time">
+                    <div class="frame_time_title">MAY</div>
+                    <div class="frame_time_subtitle">1</div>
+                  </div>
+                  <div class="frame_arrow"></div>
+                  <div class="frame_time">
+                    <div class="frame_time_title">DECEMBER</div>
+                    <div class="frame_time_subtitle">24</div>
+                  </div>
+                </div>
+                <div class="row">
+                  <ul>
+                    <li class="frame_time_entry"><span class="frame_time_entry_day">Monday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                    <li class="frame_time_entry"><span class="frame_time_entry_day">Tuesday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                    <li class="frame_time_entry"><span class="frame_time_entry_day">Wednesday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                    <li class="frame_time_entry"><span class="frame_time_entry_day">Thursday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                    <li class="frame_time_entry"><span class="frame_time_entry_day">Friday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                    <li class="frame_time_entry"><span class="frame_time_entry_day">Saturday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                    <li class="frame_time_entry"><span class="frame_time_entry_day">Sunday</span><span class="frame_time_entry_time">Closed</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
         </div> <!-- Section -->
         <div data-template="footer">
           active-page: register

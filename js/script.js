@@ -79,7 +79,52 @@ var selectFillData = {
       'Saskatchewan',
       'Yukon'
     ]
-  }
+  },
+  months: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ],
+  years: [
+  '1970',
+  '1971',
+  '1972',
+  '1973',
+  '1974',
+  '1975',
+  '1976',
+  '1977',
+  '1978',
+  '1979',
+  '1980',
+  '1981',
+  '1982',
+  '1983',
+  '1984',
+  '1985',
+  '1986',
+  '1987',
+  '1988',
+  '1989',
+  '1990',
+  '1991',
+  '1992',
+  '1993',
+  '1994',
+  '1995',
+  '1996',
+  '1997',
+  '1998'
+  ]
 };
 
 function nullBool(value) {
@@ -995,7 +1040,7 @@ function formValidate(el) {
             return (string.length > 0);
           },
           password: function () {
-            return (string.length > 0 && nullBool(string.match(/[a-zA-Z0-9_-]+/)));
+            return (string.length > 6 && nullBool(string.match(/^[\!\@\#\$\%\^\&\*\(\)a-zA-Z0-9_-]+$/)));
           },
           zipCode: function () {
             return (nullBool(string.match(/^[0-9]{5}$/)));
@@ -1100,18 +1145,46 @@ function formValidate(el) {
   }
 };
 
+/* A function that automatically fills the select element with the correct age range */
+
+function childrenAges() {
+  function convert() {
+    var arr = $('[data-age-range]').attr('data-age-range').split(',').sort();
+    return [parseInt(arr[0]),parseInt(arr[1])];
+  }
+  function createRange(range) {
+    var year  = new Date().getFullYear();
+    var arr = [];
+    for (var i=0;i<=(range[0]-range[1]);i++) {
+      arr.push((year-range[0]+i).toString());
+    }
+    return arr.reverse();
+  }
+  function init(bool) {
+    if (bool) {
+      selectFillData['child-years'] = createRange(convert());
+    }
+  }
+  init(($('[data-age-range]').size()));
+}
+
 /* A function that takes an object and converts into a select element with options */
 
 function selectFill() {
   var select = $('select');
-  var html = [];
+  var html;
   function fill(el,target) {
+    html = [];
     for (k in selectFillData[target]) {
-      html.push('<optgroup label="' + k + '">\n');
-      $.each(selectFillData[target][k],function (i,j) {
-        html.push('\t<option value="' + j.toLowerCase() + '">' + j + '</option>\n');
-      });
-      html.push('</optgroup>\n');
+      if (typeof selectFillData[target][k] === 'object') {
+        html.push('<optgroup label="' + k + '">\n');
+        $.each(selectFillData[target][k],function (i,j) {
+          html.push('\t<option value="' + j.toLowerCase() + '">' + j + '</option>\n');
+        });
+        html.push('</optgroup>\n');
+      } else {
+        html.push('\t<option value="' + selectFillData[target][k].toLowerCase() + '">' + selectFillData[target][k] + '</option>\n');
+      }
     }
     el.append(html.join(''));
   }
@@ -1270,6 +1343,9 @@ var dingoEvents = {
 };
 
 dingo.click = {
+  'form-validate': function (options) {
+    dingoEvents[options.dingo+'_click'](options);
+  },
   'form-validate-submit': function (options) {
     dingoEvents[options.dingo](options);
   },
@@ -1322,6 +1398,7 @@ $(function () {
   template().init(function () {
     sticky();
   });
+  childrenAges();
   selectFill();
   carousel('.carousel').init();
   $('textarea,input').placeholder();
