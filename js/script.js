@@ -276,7 +276,7 @@ function nullBool(value) {
 
   }(this, document, jQuery));
 
-// Dingo Version 1.2
+// Dingo Version 1.3.2
 // MIT License
 // Coded by Sean MacIsaac and created for/existing because of
 // these wonderful companies: Cosarie, InventoryLab & WizzSolutions
@@ -310,14 +310,12 @@ var dingo = {
   },
   get: function (el,event) {
     event      = event||'';
+    var dingos = el.attr('data-dingo').match(/[a-zA-Z0-9_-]+(\s+|)(\{[^}]*?\}|)/g);
     var chain  = [];
-    if (typeof el.attr('data-dingo') === 'string') {
-      var dingos = el.attr('data-dingo').match(/[a-zA-Z0-9_-]+(\s+|)(\{[^}]*?\}|)/g);
 
-      $.each(dingos,function (i,k) {
-        chain.push(dingo.toJs({dingo: k,el: el,event: event}));
-      });
-    }
+    $.each(dingos,function (i,k) {
+      chain.push(dingo.toJs({dingo: k,el: el,event: event}));
+    });
     return chain;
   },
   toJs: function (options) {
@@ -449,12 +447,12 @@ var dingo = {
     function set() {
       if (dingo.is('drag,dragstart,dragend',dingoEvent)) {
         dingoStore.dragEvent = {
-          dingoEvent: dingoEvent,
-          el: options.el,
-          pageX: pageX,
-          pageY: pageY,
-          options: options,
-          mousedown: true
+          dingoEvent : dingoEvent,
+          el         : options.el,
+          pageX      : pageX,
+          pageY      : pageY,
+          options    : options,
+          mousedown  : true
         }
         trigger('dragstart');
       }
@@ -481,35 +479,44 @@ var dingo = {
     }
   },
   exe: function (options) {
-    var chain   = dingo.get(options.el,options.event);
-    var tagname = options.el[0].tagName.toLowerCase();
+    function exe() {
+      var chain   = dingo.get(options.el,options.event);
+      var tagname = options.el[0].tagName.toLowerCase();
 
-    function mouseEvents(data,dingoEvent) {
-      var swipe = dingo.swipeEvent(options,dingoEvent);
+      function mouseEvents(data,dingoEvent) {
+        var swipe = dingo.swipeEvent(options,dingoEvent);
 
-      if (swipe && dingo.is(swipe.event,dingoEvent)) {
-        dingo[swipe.event][dingoEvent](data);
+        if (swipe && dingo.is(swipe.event,dingoEvent)) {
+          dingo[swipe.event][dingoEvent](data);
+        }
+        if (dingo.is(options.htmlEvent,dingoEvent)) {
+          dingo[options.htmlEvent][dingoEvent](data);
+        }
+
+        dingo.dragEvent(options,dingoEvent);
       }
-      if (dingo.is(options.htmlEvent,dingoEvent)) {
-        dingo[options.htmlEvent][dingoEvent](data);
-      }
 
-      dingo.dragEvent(options,dingoEvent);
+      $.each(chain,function (i,k) {
+        mouseEvents(k.data,k.dingoEvent);
+      });
+    };
+    if (typeof options.el.attr('data-dingo') === 'string') {
+      exe();
     }
-
-    $.each(chain,function (i,k) {
-      mouseEvents(k.data,k.dingoEvent);
-    });
   },
   init: function (el) {
     dingoStore.swipeEvent = {};
     dingoStore.dragEvent = {};
     dingo.on($('[data-dingo]'));
   },
+  bind: function (el) {
+    dingo.on(el);
+    dingo.on(el.find('[data-dingo]'));
+  },
   on: function (el) {
     $(window).on('scroll',function (event) {
       if (dingo.is('scroll','window')) {
-        dingo.scroll['window'](event);
+        dingo.scroll['window']({event: event,dingo: 'window',el: $(this)});
       }
     });
     $.each(dingo.htmlEvents(),function (i,htmlEvent) {
@@ -522,7 +529,7 @@ var dingo = {
 };
 
 /*
-  Version 1.0.6
+  Template Version 1.0.6
   MIT License
   by Sean MacIsaac & WizzSolutions (http://www.wizzsolutions.com)
 */
@@ -530,10 +537,8 @@ var dingo = {
 var template_store = {};
 var template_fn = {};
 function template(context) {
-  var name = '';
   if (typeof context === 'string' && context.match(/^[a-zA-Z0-9_-]+$/)) {
-    name    = context;
-    context = template_store[name];
+    context = template_store[context];
     if (typeof context === 'object') {
       context = context.content;
     } else {
@@ -620,9 +625,10 @@ function template(context) {
       function pass(processed) {
         processed = $(processed);
         // Pass to the template function
-        if (typeof template_fn[name] === 'function') {
-          template_fn[name](object,processed);
+        if (typeof template_fn[context] === 'function') {
+          template_fn[context](object,processed);
         }
+        dingo.bind(processed);
         return processed;
       }
 
@@ -698,8 +704,6 @@ function template(context) {
           var processed = template(object.which).get(object.data);
           if (typeof processed === 'object') {
             object.el.replaceWith(processed);
-            dingo.on(processed);
-            dingo.on(processed.find('[data-dingo]'));
           }
         }
         $('[data-template]').each(function () {
@@ -1103,10 +1107,11 @@ function selectFill() {
   var html = [];
   function fill(el,target) {
     for (k in selectFillData[target]) {
-      html.push('<optgroup label="' + k + '">');
+      html.push('<optgroup label="' + k + '">\n');
       $.each(selectFillData[target][k],function (i,j) {
-        html.push('<option value="' + j.toLowerCase() + '">' + j + '</option>');
+        html.push('\t<option value="' + j.toLowerCase() + '">' + j + '</option>\n');
       });
+      html.push('</optgroup>\n');
     }
     el.append(html.join(''));
   }
@@ -1170,23 +1175,31 @@ function sticky() {
   var sticky   = '_is-sticky';
   var stickyEl = $('.sticky');
 
-  function getTop(el) {
-    var top  = el.offset().top;
-    var attr = 'data-sticky-top';
-    if (typeof el.attr(attr) === 'string') {
-      return parseInt(el.attr(attr),10);
-    } else {
-      el.attr(attr,top);
-      return parseInt(top,10);
+  function get(el) {
+    var top    = el.offset().top;
+    var bottom = top+el.outerHeight();
+
+    function result(attr,pos) {
+      if (typeof el.attr(attr) === 'string') {
+        return parseInt(el.attr(attr),10);
+      } else {
+        el.attr(attr,pos);
+        return parseInt(pos,10);
+      }
+    }
+
+    return {
+      top: result('data-sticky-top',top),
+      bottom: result('data-sticky-bottom',bottom)
     }
   }
 
   function stick(el) {
-    var top    = getTop(el);
-
+    var top    = get(el).top;
+    var bottom = get(el).bottom;
     if (scroll > top && !el.hasClass(sticky)) {
       $(el).addClass(sticky);
-    } else if (scroll < top && $(el).hasClass(sticky)) {
+    } else if (scroll < bottom && $(el).hasClass(sticky)) {
       $(el).removeClass(sticky);
     }
   }
@@ -1250,6 +1263,9 @@ var dingoEvents = {
     var limit = parseInt(options.limit,10);
     options.el.val(options.el.val().substr(0,limit));
     $('[data-limit="' + options.el.attr('name') + '"]').html(limit - options.el.val().length)
+  },
+  formDuplicate: function (options) {
+
   }
 };
 
@@ -1267,6 +1283,9 @@ dingo.click = {
     dingoEvents[options.dingo](options);
   },
   expander: function (options) {
+    dingoEvents[options.dingo](options);
+  },
+  formDuplicate: function (options) {
     dingoEvents[options.dingo](options);
   }
 };
