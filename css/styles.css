@@ -106,7 +106,7 @@ p {
 
 .block,
 .bowling-benefit,
-.carousel-frame,
+.video-frame,
 .carousel-item,
 .carousel-items,
 .carousel-nav-item,
@@ -857,9 +857,10 @@ input[type="password"].header_input {
   text-align: center;
 }
 
-.carousel-frame {
+.video-frame {
   border: 1px solid #cbcbcb;
   padding: 10px;
+  border-radius: 3px;
 }
 
 .carousel-items {
