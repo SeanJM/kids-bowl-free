@@ -29,7 +29,11 @@ body {
 .frame_time_entry,
 .frame_time,
 h1,h2,h3,h4,
-h1 em {
+h1 *,
+h2 *,
+h3 *,
+h4 *,
+h5 * {
   font-family: 'Open Sans Condensed';
   font-weight: 300;
   font-style: normal;
@@ -642,6 +646,7 @@ input[type="password"].header_input {
   border: none;
   font-size: 14px;
   color: #fff;
+  cursor: pointer;
 }
 
 .header_btn._large {
@@ -652,12 +657,24 @@ input[type="password"].header_input {
   background-position: 0 -538px;
 }
 
+.header_btn._green:hover {
+  background-position: 0 -580px;
+}
+
 .header_btn._large._green {
   background-position: -87px -538px;
 }
 
+.header_btn._large._green:hover {
+  background-position: -87px -580px;
+}
+
 .header_btn._blue {
   background-position: -198px -538px;
+}
+
+.header_btn._blue:hover {
+  background-position: -198px -580px;
 }
 
 .header_btn + .header_btn,
@@ -1026,7 +1043,8 @@ input[type="password"].header_input {
 
 /* Alert */
 
-.alert-help {
+.alert-help,
+.alert-error {
   font-size: 14px;
   color: #fff;
   background: #28aae1;
@@ -1035,6 +1053,10 @@ input[type="password"].header_input {
   line-height: 24px;
   font-weight: 300;
   margin-bottom: 30px;
+}
+
+.alert-error {
+  background: #D61529;
 }
 
 /* Expander */
@@ -1046,6 +1068,14 @@ input[type="password"].header_input {
 
 .expander_section._active {
   display: block;
+}
+
+[data-dingo="expander"] {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
 /* FAQ */
@@ -1114,18 +1144,30 @@ input[type="password"].header_input {
   border: 1px solid #E5E5E5;
 }
 
+.frame + .frame {
+  margin-top: 30px;
+}
+
 .frame .section {
-  padding: 30px;
+  padding: 20px 30px 30px;
 }
 
 .frame_heading {
-  padding: 30px;
-  margin: -1px -1px 0 -1px;
+  padding: 23px;
+  margin: -1px;
   position: relative;
 }
 
-.frame_heading._red {
+.frame_heading._times-available {
   background: #D61529;
+}
+
+.frame_heading._terms {
+  background: #703866;
+}
+
+.frame_heading._shoe-rental {
+  background: #FF4F38;
 }
 
 .frame_heading_title {
@@ -1187,7 +1229,7 @@ input[type="password"].header_input {
   width: 30px;
   height: 30px;
   background-position: -60px -30px;
-  margin: 30px 25px;
+  margin: 30px 20px;
 }
 
 .frame_time_entry {

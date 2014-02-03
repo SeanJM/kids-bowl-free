@@ -1289,6 +1289,21 @@ function sticky() {
 
 };
 
+/* Expanders */
+
+function expander(el) {
+  return {
+    toggle: function () {
+      var expander = el.closest('.expander');
+      var section  = expander.find('.expander_section').eq(0);
+      var btn      = expander.find('.expander_btn').eq(0);
+      expander.toggleClass('_active');
+      section.toggleClass('_active')
+      btn.toggleClass('_active');
+    }
+  };
+};
+
 var dingoEvents = {
   'form-validate_keyup': function (options) {
     formValidate(options.el).confirm();
@@ -1325,12 +1340,7 @@ var dingoEvents = {
     carousel(options.el.closest('.carousel')).select(options.el.index());
   },
   expander: function (options) {
-    var expander = options.el.closest('.expander');
-    var section  = expander.find('.expander_section').eq(0);
-    var btn      = expander.find('.expander_btn').eq(0);
-    expander.toggleClass('_active');
-    section.toggleClass('_active');
-    btn.toggleClass('_active');
+    expander(options.el).toggle();
   },
   text: function (options) {
     var limit = parseInt(options.limit,10);
