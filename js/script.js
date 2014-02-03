@@ -994,7 +994,7 @@ function formValidate(el) {
         $(this).find('[data-form-validate-question]').attr('data-form-validate-question',captcha.answer);
       });
     },
-    confirm: function () {
+    confirm: function (condition) {
 
       function region() {
         return form.attr('data-region')||'United States of America';
@@ -1076,16 +1076,67 @@ function formValidate(el) {
       }; // Rules
 
       function fullfill(el,bool) {
-        var label  = $('[for="' + el.attr('name') + '"]');
-        var prompt = el.closest('.form-validate-group').find('.form-validate-prompt');
-        if (bool) {
-          el.removeClass('form-validate');
-          label.addClass('_fulfilled');
-          animate(prompt).end();
-        } else {
-          el.addClass('form-validate');
-          label.removeClass('_fulfilled');
+
+        function getGroup(el) {
+          return {
+            label: $('[for="' + el.attr('name') + '"]'),
+            prompt: el.closest('.form-validate-group').find('.form-validate-prompt')
+          }
         }
+
+        function isValid(el) {
+          var group = getGroup(el);
+          el.removeClass('form-validate');
+          group.label.addClass('_fulfilled');
+          animate(group.prompt).end();
+        }
+
+        function isInvalid(el) {
+          var group = getGroup(el);
+          el.addClass('form-validate');
+          group.label.removeClass('_fulfilled');
+        }
+
+        function clear(el) {
+          if (el.size()) {
+            var group = getGroup(el);
+            el.removeClass('form-validate');
+            group.label.removeClass('_fulfilled');
+          }
+        }
+
+        function standard(el) {
+          if (bool) {
+            isValid(el);
+          } else {
+            isInvalid(el);
+          }
+        }
+
+        /* Conditional on validating if there's content in it */
+
+        if (nullBool(el.attr('data-dingo').match(/form-validate{condition:active}/))) {
+          if (el[0] === base[0]) {
+            /* Clear validation if the form is empty */
+            if (el.val().length < 1) {
+              clear(base);
+              clear(confirm);
+            } else {
+              standard(el);
+            }
+          } else if (el[0] === confirm[0]) {
+            if (base.val().length > 0) {
+              standard(el);
+            } else {
+              clear(base);
+              clear(confirm);
+            }
+          }
+        } else {
+          /* if it's not a conditional form validation perform standard functions */
+          standard(el);
+        }
+
       };
       // Confirmation field check, checks is first condition is truthy then
       // checks if the fields are mirrors
@@ -1111,9 +1162,11 @@ function formValidate(el) {
       return (form.find('.form-validate').size() < 1);
     },
     check: function () {
+      var el;
       form.find('[data-dingo*="form-validate"]').each(function () {
-        if (!nullBool($(this).attr('data-dingo').match(/form-validate-submit/))) {
-          formValidate($(this)).confirm();
+        el = $(this);
+        if (!nullBool(el.attr('data-dingo').match(/form-validate-submit/)) && !nullBool(el.attr('data-dingo').match(/form-validate{condition:active}/))) {
+          formValidate(el).confirm();
         }
       });
       return form.find('.form-validate');
@@ -1305,8 +1358,18 @@ function expander(el) {
 };
 
 var dingoEvents = {
+  closePopouts: function (options) {
+    var active = $('._popout._animated-in');
+    if (active.size() && $('body').hasClass('_popout-safe')) {
+      animate(active).end();
+      $('body').removeClass('_popout-safe')
+    } else {
+      $('body').addClass('_popout-safe')
+    }
+  },
   'form-validate_keyup': function (options) {
-    formValidate(options.el).confirm();
+    var condition = options.condition||'';
+    formValidate(options.el).confirm(condition);
   },
   'form-validate_click': function (options) {
     if (options.el.attr('type') === 'checkbox') {
@@ -1347,12 +1410,15 @@ var dingoEvents = {
     options.el.val(options.el.val().substr(0,limit));
     $('[data-limit="' + options.el.attr('name') + '"]').html(limit - options.el.val().length)
   },
-  formDuplicate: function (options) {
-
+  help: function (options) {
+    animate(options.el).start();
   }
 };
 
 dingo.click = {
+  closePopouts: function (options) {
+    dingoEvents[options.dingo](options);
+  },
   'form-validate': function (options) {
     dingoEvents[options.dingo+'_click'](options);
   },
@@ -1371,7 +1437,7 @@ dingo.click = {
   expander: function (options) {
     dingoEvents[options.dingo](options);
   },
-  formDuplicate: function (options) {
+  help: function (options) {
     dingoEvents[options.dingo](options);
   }
 };
