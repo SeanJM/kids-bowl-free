@@ -1930,20 +1930,26 @@ h2 .help {
 
   .hero._home h1,
   .hero h1 {
-    font-size: 32px;
+    font-size: 27px;
     line-height: 36px;
     margin-top: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .hero h2 {
-    font-size: 23px;
+    font-size: 20px;
     line-height: 28px;
   }
 
   .hero_search_btn {
     margin-left: 0 !important;
     margin-top: 10px;
+  }
+
+  .hero._search .hero_search {
+    margin-top: 20px;
   }
 
   /* Carousel */
