@@ -566,7 +566,8 @@ p + input {
   background: #0FBF6F;
 }
 
-.btn._blue:hover {
+.btn._blue:hover,
+.btn._green:hover {
   color: #fff;
 }
 
@@ -1975,6 +1976,15 @@ h2 .help {
     line-height: 30px;
   }
 
+  .register_age-requirement_title {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .register_age-requirement_subtitle {
+    font-size: 16px;
+  }
+
   /* Hero */
 
   .hero._home h1,
@@ -2103,9 +2113,8 @@ h2 .help {
 
   /* Help */
 
-  .help, .help .arrow {
-    background-image: url(../img/sprites_help_retina.png);
-    background-size: 30px 60
+  h2 .help {
+    margin-top: 3px;
   }
 
   .footer {
@@ -2153,6 +2162,10 @@ h2 .help {
   .frame_heading_toggle, .frame_time, .frame_arrow {
     background-image: url(../img/sprites_frame_retina.png);
     background-size: 90px 140px;
+  }
+  .help, .help .arrow {
+    background-image: url(../img/sprites_help_retina.png);
+    background-size: 30px 60px;
   }
 }
 

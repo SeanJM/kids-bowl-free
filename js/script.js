@@ -1140,7 +1140,7 @@ function closePopouts(options) {
   if (active.size() && $('body').hasClass('_popout-safe')) {
     animate(active).end();
     $('body').removeClass('_popout-safe')
-  } else {
+  } else if (target.hasClass('_popout')) {
     $('body').addClass('_popout-safe')
   }
   if (target.closest('.header_nav').size() < 1 && target.closest('.header_nav_control').size() < 1) {
