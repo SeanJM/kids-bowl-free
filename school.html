@@ -15,150 +15,154 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body class="_logged-out"> <!-- Toggle _logged-in to display the logout controls -->
-    <!-- Facebook sharing SDK -->
-    <div id="fb-root"></div>
-    <div data-template="header">
-      active-page: school
-    </div>
-    <div class="main">
-      <div class="container">
-        <div class="section hero _school">
-          <h1 class="section_title">Get Your School, Church &amp; Organization Involved</h1>
-          <h2 class="section_subtitle">2 Free Games Of Bowling A Day, All Summer</h2>
-          <div class="attribution">Photo by <a href="http://www.flickr.com/photos/23165290@N00/">Tim Evanson</a></div>
-        </div> <!-- Section Hero -->
-        <div class="bowling-benefit-ribbon">
-          <div class="bowling-benefit">Exercise 194 Muscles</div>
-          <div class="bowling-benefit">Burn Between 320 and 580 Calories</div>
-          <div class="bowling-benefit">Walk Around Half A Mile</div>
-        </div>
-        <div class="section">
-          <div class="alert-help">Enter your information below and we'll have the center nearest to you provide <em>Kids Bowl Free cards</em> that you can distribute to your community. Thanks for helping provide FREE Family Fun with us all summer long!</div>
-            <form class="form-validate-container" name="school-registration">
-            <div class="g14">
-              <h2>School, Organization Information</h2>
-              <div class="row-sm">
-                <div class="form-validate-group">
-                  <label class="block" for="name">Name <span class="form-validate-indicator"></span></label>
-                  <input class="block" name="name" type="text" data-dingo="form-validate">
-                  <div class="form-validate-prompt">
-                    <div class="form-validate-prompt_text">Please Enter A Valid Name</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row-sm">
-                <div class="form-validate-group">
-                  <label class="block" for="number-of-children">Number of Children <span class="form-validate-indicator"></span></label>
-                  <input class="g3" name="number-of-children" type="text" data-dingo="form-validate">
-                  <div class="form-validate-prompt">
-                    <div class="form-validate-prompt_text">Please Enter A Valid Number of Children</div>
-                  </div>
-                </div>
-              </div>
-              <h2>Contact Information</h2>
-              <div class="row-sm">
-                <div class="g12 col1of2-sm">
-                  <div class="form-validate-group">
-                    <label class="block" for="first-name">First Name <span class="form-validate-indicator"></span></label>
-                    <input class="block" name="first-name" type="text" data-dingo="form-validate">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Please Enter A Valid First Name</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="g12 col2of2-sm">
-                  <div class="form-validate-group">
-                    <label class="block" for="last-name">Last Name <span class="form-validate-indicator"></span></label>
-                    <input class="block" name="last-name" type="text" data-dingo="form-validate">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Please Enter A Valid Last Name</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row-sm">
-                <div class="form-validate-group">
-                  <label class="block" for="email">Email <span class="form-validate-indicator"></span></label>
-                  <input class="block" name="email" type="text" data-dingo="form-validate">
-                  <div class="form-validate-prompt">
-                    <div class="form-validate-prompt_text">Please Enter A Valid Email Address</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row-sm">
-                <div class="g12 col1of2-sm">
-                  <div class="form-validate-group">
-                    <label class="block" for="home-phone">Home Phone <span class="form-validate-indicator"></span></label>
-                    <input class="block" name="home-phone" type="text" data-dingo="form-validate">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Please Enter A Home Phone Number</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="g12 col2of2-sm">
-                  <div class="form-validate-group">
-                    <label class="block" for="cell-phone">Cell Phone <span class="form-validate-indicator"></span></label>
-                    <input class="block" name="cell-phone" type="text" data-dingo="form-validate">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Please Enter A Valid Cell Phone Number</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <h2>Address</h2>
-              <div class="row-sm">
-                <div class="form-validate-group">
-                  <label class="block" for="address">Street Address <span class="form-validate-indicator"></span></label>
-                  <input class="block" name="address" type="text" data-dingo="form-validate">
-                  <div class="form-validate-prompt">
-                    <div class="form-validate-prompt_text">Please Enter A Valid Street Address</div>
-                  </div>
-                </div>
-              </div>
-              <div class="row-sm">
-                <div class="g8 col1of3-sm">
-                  <div class="form-validate-group">
-                    <label class="block" for="city">City <span class="form-validate-indicator"></span></label>
-                    <input class="block" name="city" type="text" data-dingo="form-validate">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Please Enter A Valid City</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="g8 col2of3-sm">
-                  <div class="form-validate-group">
-                    <label class="block" for="state-province">State / Province <span class="form-validate-indicator"></span></label>
-                    <select class="block" name="state-province" data-fill="location" data-dingo="form-validate">
-                      <option>Select</option>
-                    </select>
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Please Enter A Valid State or Province</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="g8 col3of3-sm">
-                  <div class="form-validate-group">
-                    <label class="block" for="zip-postal">Zip / Postal Code <span class="form-validate-indicator"></span></label>
-                    <input class="block" name="zip-postal" type="text" data-dingo="form-validate">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Please Enter A Valid Zip or Postal Code</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="center row-xl">
-                <button class="btn _green" data-dingo="form-validate-submit"><i class="icon-check"></i>Submit</button>
-              </div>
-            </form>
+    <div class="app-container" id="app-container">
+      <!-- Facebook sharing SDK -->
+      <div id="fb-root"></div>
+      <div data-template="header">
+        active-page: school
+      </div>
+      <div class="main">
+        <div class="container">
+          <div class="section hero _school">
+            <h1 class="section_title">Get Your School, Church &amp; Organization Involved</h1>
+            <h2 class="section_subtitle">2 Free Games Of Bowling A Day, All Summer</h2>
+            <div class="attribution">Photo by <a href="http://www.flickr.com/photos/23165290@N00/">Tim Evanson</a></div>
+          </div> <!-- Section Hero -->
+          <div class="bowling-benefit-ribbon">
+            <div class="bowling-benefit">Exercise 194 Muscles</div>
+            <div class="bowling-benefit">Burn Between 320 and 580 Calories</div>
+            <div class="bowling-benefit">Walk Around Half A Mile</div>
           </div>
-        </div> <!-- Section -->
-        <div data-template="footer">
-          active-page: school
+          <div class="section">
+            <div class="alert-help">Enter your information below and we'll have the center nearest to you provide <em>Kids Bowl Free cards</em> that you can distribute to your community. Thanks for helping provide FREE Family Fun with us all summer long!</div>
+              <form class="form-validate-container" name="school-registration">
+              <div class="g14 m24">
+                <h2>School, Organization Information</h2>
+                <div class="row-sm">
+                  <div class="form-validate-group">
+                    <label class="block" for="name">Name <span class="form-validate-indicator"></span></label>
+                    <input class="block" name="name" type="text" data-dingo="form-validate">
+                    <div class="form-validate-prompt">
+                      <div class="form-validate-prompt_text">Please Enter A Valid Name</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-sm">
+                  <div class="form-validate-group">
+                    <label class="block" for="number-of-children">Number of Children <span class="form-validate-indicator"></span></label>
+                    <input class="g3" name="number-of-children" type="text" data-dingo="form-validate">
+                    <div class="form-validate-prompt">
+                      <div class="form-validate-prompt_text">Please Enter A Valid Number of Children</div>
+                    </div>
+                  </div>
+                </div>
+                <h2>Contact Information</h2>
+                <div class="row-sm">
+                  <div class="g12 m24 mrow col1of2-sm">
+                    <div class="form-validate-group">
+                      <label class="block" for="first-name">First Name <span class="form-validate-indicator"></span></label>
+                      <input class="block" name="first-name" type="text" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Please Enter A Valid First Name</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="g12 m24 mrow-sm col2of2-sm">
+                    <div class="form-validate-group">
+                      <label class="block" for="last-name">Last Name <span class="form-validate-indicator"></span></label>
+                      <input class="block" name="last-name" type="text" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Please Enter A Valid Last Name</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-sm">
+                  <div class="form-validate-group">
+                    <label class="block" for="email">Email <span class="form-validate-indicator"></span></label>
+                    <input class="block" name="email" type="text" data-dingo="form-validate">
+                    <div class="form-validate-prompt">
+                      <div class="form-validate-prompt_text">Please Enter A Valid Email Address</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-sm">
+                  <div class="g12 col1of2-sm">
+                    <div class="form-validate-group">
+                      <label class="block" for="home-phone">Home Phone <span class="form-validate-indicator"></span></label>
+                      <input class="block" name="home-phone" type="text" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Please Enter A Home Phone Number</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="g12 col2of2-sm">
+                    <div class="form-validate-group">
+                      <label class="block" for="cell-phone">Cell Phone <span class="form-validate-indicator"></span></label>
+                      <input class="block" name="cell-phone" type="text" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Please Enter A Valid Cell Phone Number</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <h2>Address</h2>
+                <div class="row-sm">
+                  <div class="form-validate-group">
+                    <label class="block" for="address">Street Address <span class="form-validate-indicator"></span></label>
+                    <input class="block" name="address" type="text" data-dingo="form-validate">
+                    <div class="form-validate-prompt">
+                      <div class="form-validate-prompt_text">Please Enter A Valid Street Address</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-sm">
+                  <div class="g12 m24 col1of2-sm">
+                    <div class="form-validate-group">
+                      <label class="block" for="city">City <span class="form-validate-indicator"></span></label>
+                      <input class="block" name="city" type="text" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Please Enter A Valid City</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="g12 m24 col2of2-sm">
+                    <div class="form-validate-group">
+                      <label class="block" for="state-province">State / Province <span class="form-validate-indicator"></span></label>
+                      <select class="block" name="state-province" data-fill="location" data-dingo="form-validate">
+                        <option>Select</option>
+                      </select>
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Please Enter A Valid State or Province</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row-sm">
+                  <div class="g8 m24">
+                    <div class="form-validate-group">
+                      <label class="block" for="zip-postal">Zip / Postal <span class="form-validate-indicator"></span></label>
+                      <input class="block" name="zip-postal" type="text" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Please Enter A Valid Zip or Postal Code</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="center row-xl">
+                  <button class="btn _green" data-dingo="form-validate-submit"><i class="icon-check"></i>Submit</button>
+                </div>
+              </form>
+            </div>
+          </div> <!-- Section -->
+          <div data-template="footer">
+            active-page: school
+          </div>
         </div>
       </div>
-      <div class="copyright">&copy; 2014 Kids Bowl Free</div>
     </div>
     <script src="js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/vendor/dingo.js"></script>
     <script src="js/script.js"></script>
   </body>
 </HTML>

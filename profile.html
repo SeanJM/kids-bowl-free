@@ -15,214 +15,216 @@
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body class="_logged-in" data-dingo="closePopouts"> <!-- Toggle _logged-in / _logged-out to toggle the logout controls -->
-    <!-- Facebook sharing SDK -->
-    <div id="fb-root"></div>
-    <div data-template="header">
-      active-page: account
-    </div>
-    <div class="main">
-      <div class="container">
-        <div class="section hero _account">
-          <h1 class="section_title">Get A Family Pass Today</h1>
-          <h2 class="section_subtitle">Only $24.95, the pass allows 4 adults to bowl 2 games per day along with the children</h2>
-          <div class="center">
-            <div class="btn _green">Learn More</div>
-          </div>
-          <div class="attribution">Photo by <a href="http://www.flickr.com/photos/battlecreekcvb/">Battle Creek CVB</a></div>
-        </div>
-        <div class="section">
-          <h1>Hi Andy</h1>
-          <form class="g14 col1of2 form-validate-container">
-            <div class="frame">
-              <div class="section">
-                <h2>Parent Account Information <span class="help _popout" data-dingo="help"><span class="help_popout"><span class="arrow"></span><span class="help_text">These are the children registered for Kids Bowl Free. You must be the legal guardian of the children that you add.</span></span></span></h2>
-                <div class="row">
-                  <div class="g12 col1of2-sm">
-                    <div class="form-validate-group">
-                      <label class="block" for="first-name">First Name<span class="form-validate-indicator"></span></label>
-                      <input class="block" type="text" name="first-name" data-dingo="form-validate">
-                      <div class="form-validate-prompt">
-                        <div class="form-validate-prompt_text">Enter A Valid First Name</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="g12 col2of2-sm">
-                    <div class="form-validate-group">
-                      <label class="block" for="last-name">Last Name<span class="form-validate-indicator"></span></label>
-                      <input class="block" type="text" name="last-name" data-dingo="form-validate">
-                      <div class="form-validate-prompt">
-                        <div class="form-validate-prompt_text">Enter A Valid Last Name</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div> <!-- section -->
-            </div> <!-- frame -->
-            <div class="frame">
-              <div class="section">
-                <h2>Contact Information</h2>
-                <div class="row">
-                  <div class="form-validate-group">
-                    <label class="block" for="phone">Phone Number<span class="form-validate-indicator"></span></label>
-                    <input class="block" type="text" name="phone" data-dingo="form-validate">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Enter A Valid Phone Number</div>
-                    </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="form-validate-group">
-                    <label class="block" for="email">Email Address<span class="form-validate-indicator"></span></label>
-                    <input class="block" type="text" name="email" data-dingo="form-validate">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Enter A Valid Email</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- frame -->
-            <div class="frame">
-              <div class="section">
-                <h2>Security</h2>
-                <div class="row">
-                  <div class="form-validate-group">
-                    <label class="block" for="password">New Password<span class="form-validate-indicator"></span></label>
-                    <input class="block" type="password" name="password" data-dingo="form-validate{condition:active}">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Enter A Valid Password</div>
-                    </div>
-                  </div>
-                  <span class="small">Must be atleast 6 characters long</span>
-                </div>
-                <div class="row">
-                  <div class="form-validate-group">
-                    <label class="block" for="confirm-password">Confirm New Password<span class="form-validate-indicator"></span></label>
-                    <input class="block" type="password" name="confirm-password" data-dingo="form-validate{condition:active}">
-                    <div class="form-validate-prompt">
-                      <div class="form-validate-prompt_text">Enter A Valid Password</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+    <div class="app-container" id="app-container">
+      <!-- Facebook sharing SDK -->
+      <div id="fb-root"></div>
+      <div data-template="header">
+        active-page: account
+      </div>
+      <div class="main">
+        <div class="container">
+          <div class="section hero _account">
+            <h1 class="section_title">Get A Family Pass Today</h1>
+            <h2 class="section_subtitle">Only $24.95, the pass allows 4 adults to bowl 2 games per day along with the children</h2>
+            <div class="center">
+              <div class="btn _green">Learn More</div>
             </div>
-            <div class="frame">
-              <div class="section">
-                <div class="row-xl">
-                  <h2>Address</h2>
-                  <div class="row">
-                    <div class="form-validate-group">
-                      <label class="block" for="street-address">Street Address<span class="form-validate-indicator"></span></label>
-                      <input class="block" type="text" name="street-address" data-dingo="form-validate">
-                      <div class="form-validate-prompt">
-                        <div class="form-validate-prompt_text">Enter A Valid Address</div>
-                      </div>
-                    </div>
-                  </div>
+            <div class="attribution">Photo by <a href="http://www.flickr.com/photos/battlecreekcvb/">Battle Creek CVB</a></div>
+          </div>
+          <div class="section">
+            <h1>Hi Andy</h1>
+            <form class="g14 col1of2 form-validate-container">
+              <div class="frame">
+                <div class="section">
+                  <h2>Parent Account Information</h2>
                   <div class="row">
                     <div class="g12 col1of2-sm">
                       <div class="form-validate-group">
-                        <label class="block" for="city">City<span class="form-validate-indicator"></span></label>
-                        <input class="block" type="text" name="city" data-dingo="form-validate">
+                        <label class="block" for="first-name">First Name<span class="form-validate-indicator"></span></label>
+                        <input class="block" type="text" name="first-name" data-dingo="form-validate">
                         <div class="form-validate-prompt">
-                          <div class="form-validate-prompt_text">Enter A Valid City</div>
+                          <div class="form-validate-prompt_text">Enter A Valid First Name</div>
                         </div>
                       </div>
                     </div>
                     <div class="g12 col2of2-sm">
                       <div class="form-validate-group">
-                        <label class="block" for="select-state">State / Province<span class="form-validate-indicator"></span></label>
-                        <select class="block" name="select-state" data-fill="location" data-dingo="form-validate">
-                          <option>Select</option>
-                        </select>
+                        <label class="block" for="last-name">Last Name<span class="form-validate-indicator"></span></label>
+                        <input class="block" type="text" name="last-name" data-dingo="form-validate">
                         <div class="form-validate-prompt">
-                          <div class="form-validate-prompt_text">Select A State or Province</div>
+                          <div class="form-validate-prompt_text">Enter A Valid Last Name</div>
                         </div>
                       </div>
                     </div>
-                  </div> <!-- row -->
+                  </div>
+                </div> <!-- section -->
+              </div> <!-- frame -->
+              <div class="frame">
+                <div class="section">
+                  <h2>Contact Information</h2>
                   <div class="row">
-                    <div class="g12 col1of2">
-                      <div class="form-validate-group">
-                        <label class="block" for="zip-postal">Zip / Postal Code<span class="form-validate-indicator"></span></label>
-                        <input class="block" type="text" name="zip-postal" data-dingo="form-validate">
-                        <div class="form-validate-prompt">
-                          <div class="form-validate-prompt_text">Enter A Valid Zip or Postal</div>
-                        </div>
+                    <div class="form-validate-group">
+                      <label class="block" for="phone">Phone Number<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="text" name="phone" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Phone Number</div>
                       </div>
                     </div>
                   </div>
-                </div> <!-- row-xl -->
-              </div>
-            </div>
-            <div class="form-control">
-              <button class="btn _green" data-dingo="form-validate-submit"><i class="icon-check"></i>Save Profile</button>
-            </div>
-          </form> <!-- form -->
-          <div class="g10 col2of2">
-            <div class="frame">
-              <div class="section">
-                <h2>Fairview Lanes</h2>
-                <h3>
-                  21847 Lorain Rd,<br>
-                  Park, OH, 44126<br>
-                  (440) 331 - 3244</h3>
-              </div>
-            </div>
-            <div class="frame">
-              <div class="frame_heading _times-available">
-                <span class="frame_heading_title">Times Available</span>
-              </div>
-              <div class="section">
-                <div class="row center">
-                  <div class="frame_time">
-                    <div class="frame_time_title">MAY</div>
-                    <div class="frame_time_subtitle">1</div>
-                  </div>
-                  <div class="frame_arrow"></div>
-                  <div class="frame_time">
-                    <div class="frame_time_title">DECEMBER</div>
-                    <div class="frame_time_subtitle">24</div>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="email">Email Address<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="text" name="email" data-dingo="form-validate">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Email</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="row">
-                  <ul>
-                    <li class="frame_time_entry"><span class="frame_time_entry_day">Monday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
-                    <li class="frame_time_entry"><span class="frame_time_entry_day">Tuesday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
-                    <li class="frame_time_entry"><span class="frame_time_entry_day">Wednesday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
-                    <li class="frame_time_entry"><span class="frame_time_entry_day">Thursday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
-                    <li class="frame_time_entry"><span class="frame_time_entry_day">Friday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
-                    <li class="frame_time_entry"><span class="frame_time_entry_day">Saturday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
-                    <li class="frame_time_entry"><span class="frame_time_entry_day">Sunday</span><span class="frame_time_entry_time">Closed</span></li>
-                  </ul>
+              </div> <!-- frame -->
+              <div class="frame">
+                <div class="section">
+                  <h2>Security</h2>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="password">New Password<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="password" name="password" data-dingo="form-validate{condition:active}">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Password</div>
+                      </div>
+                    </div>
+                    <span class="small">Must be atleast 6 characters long</span>
+                  </div>
+                  <div class="row">
+                    <div class="form-validate-group">
+                      <label class="block" for="confirm-password">Confirm New Password<span class="form-validate-indicator"></span></label>
+                      <input class="block" type="password" name="confirm-password" data-dingo="form-validate{condition:active}">
+                      <div class="form-validate-prompt">
+                        <div class="form-validate-prompt_text">Enter A Valid Password</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="frame">
+                <div class="section">
+                  <div class="row-xl">
+                    <h2>Address</h2>
+                    <div class="row">
+                      <div class="form-validate-group">
+                        <label class="block" for="street-address">Street Address<span class="form-validate-indicator"></span></label>
+                        <input class="block" type="text" name="street-address" data-dingo="form-validate">
+                        <div class="form-validate-prompt">
+                          <div class="form-validate-prompt_text">Enter A Valid Address</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="g12 col1of2-sm">
+                        <div class="form-validate-group">
+                          <label class="block" for="city">City<span class="form-validate-indicator"></span></label>
+                          <input class="block" type="text" name="city" data-dingo="form-validate">
+                          <div class="form-validate-prompt">
+                            <div class="form-validate-prompt_text">Enter A Valid City</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="g12 col2of2-sm">
+                        <div class="form-validate-group">
+                          <label class="block" for="select-state">State / Province<span class="form-validate-indicator"></span></label>
+                          <select class="block" name="select-state" data-fill="location" data-dingo="form-validate">
+                            <option>Select</option>
+                          </select>
+                          <div class="form-validate-prompt">
+                            <div class="form-validate-prompt_text">Select A State or Province</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> <!-- row -->
+                    <div class="row">
+                      <div class="g12 col1of2">
+                        <div class="form-validate-group">
+                          <label class="block" for="zip-postal">Zip / Postal Code<span class="form-validate-indicator"></span></label>
+                          <input class="block" type="text" name="zip-postal" data-dingo="form-validate">
+                          <div class="form-validate-prompt">
+                            <div class="form-validate-prompt_text">Enter A Valid Zip or Postal</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!-- row-xl -->
+                </div>
+              </div>
+              <div class="form-control">
+                <button class="btn _green" data-dingo="form-validate-submit"><i class="icon-check"></i>Save Profile</button>
+              </div>
+            </form> <!-- form -->
+            <div class="g10 col2of2">
+              <div class="frame">
+                <div class="section">
+                  <h2>Fairview Lanes</h2>
+                  <h3>
+                    21847 Lorain Rd,<br>
+                    Park, OH, 44126<br>
+                    (440) 331 - 3244</h3>
+                </div>
+              </div>
+              <div class="frame">
+                <div class="frame_heading _times-available">
+                  <span class="frame_heading_title">Times Available</span>
+                </div>
+                <div class="section">
+                  <div class="row center">
+                    <div class="frame_time">
+                      <div class="frame_time_title">MAY</div>
+                      <div class="frame_time_subtitle">1</div>
+                    </div>
+                    <div class="frame_arrow"></div>
+                    <div class="frame_time">
+                      <div class="frame_time_title">DECEMBER</div>
+                      <div class="frame_time_subtitle">24</div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <ul>
+                      <li class="frame_time_entry"><span class="frame_time_entry_day">Monday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                      <li class="frame_time_entry"><span class="frame_time_entry_day">Tuesday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                      <li class="frame_time_entry"><span class="frame_time_entry_day">Wednesday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                      <li class="frame_time_entry"><span class="frame_time_entry_day">Thursday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                      <li class="frame_time_entry"><span class="frame_time_entry_day">Friday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                      <li class="frame_time_entry"><span class="frame_time_entry_day">Saturday</span><span class="frame_time_entry_time">9:00AM &#8212; 4:00PM</span></li>
+                      <li class="frame_time_entry"><span class="frame_time_entry_day">Sunday</span><span class="frame_time_entry_time">Closed</span></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div class="frame">
+                <div class="frame_heading _terms">
+                  <span class="frame_heading_title">Terms &amp; Conditions</span>
+                </div>
+                <div class="section">
+                  <p>All Participants must wear bowling shoes - rental shoes available. Not good for use with daycare outings, camps, business or club outings, or birthday party celebrations.</p>
+                  <p>All Participants must wear bowling shoes. Please No Outside Food or Beverage may be brought into the Fairview Lanes. Times are subject to change. Please call to check for open times or check the Fairview Lanes website. Not valid with any other coupon or discount. Kids Bowl Free is geared for kids ages 4 to 15. For the safety of your child, please do not register any child under the age of 4. Purchased Family Passes are valid for use only during posted Kids Bowl Free times and when bowling with a Kids Bowl Free child from your family.</p>
+                </div>
+              </div>
+              <div class="frame">
+                <div class="frame_heading _shoe-rental">
+                  <span class="frame_heading_title">Shoe Rental</span>
+                </div>
+                <div class="section">
+                  <p>Standard shoe rental rates apply. An unlimited shoe rental pass is available at the bowling center.</p>
                 </div>
               </div>
             </div>
-            <div class="frame">
-              <div class="frame_heading _terms">
-                <span class="frame_heading_title">Terms &amp; Conditions</span>
-              </div>
-              <div class="section">
-                <p>All Participants must wear bowling shoes - rental shoes available. Not good for use with daycare outings, camps, business or club outings, or birthday party celebrations.</p>
-                <p>All Participants must wear bowling shoes. Please No Outside Food or Beverage may be brought into the Fairview Lanes. Times are subject to change. Please call to check for open times or check the Fairview Lanes website. Not valid with any other coupon or discount. Kids Bowl Free is geared for kids ages 4 to 15. For the safety of your child, please do not register any child under the age of 4. Purchased Family Passes are valid for use only during posted Kids Bowl Free times and when bowling with a Kids Bowl Free child from your family.</p>
-              </div>
-            </div>
-            <div class="frame">
-              <div class="frame_heading _shoe-rental">
-                <span class="frame_heading_title">Shoe Rental</span>
-              </div>
-              <div class="section">
-                <p>Standard shoe rental rates apply. An unlimited shoe rental pass is available at the bowling center.</p>
-              </div>
-            </div>
+          </div> <!-- Section -->
+          <div data-template="footer">
+            active-page: account
           </div>
-        </div> <!-- Section -->
-        <div data-template="footer">
-          active-page: account
         </div>
       </div>
-      <div class="copyright">&copy; 2014 Kids Bowl Free</div>
     </div>
     <script src="js/vendor/jquery-1.10.2.min.js"></script>
+    <script src="js/vendor/dingo.js"></script>
     <script src="js/script.js"></script>
   </body>
 </HTML>
