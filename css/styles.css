@@ -48,6 +48,35 @@ h5 * {
   font-style: normal;
 }
 
+.bowling-benefit strong,
+.copyright strong,
+.coupon_title strong,
+.coupon_subtitle strong,
+.coupon_extra_item strong,
+.coupon_terms strong,
+.faq_title strong,
+.footer .btn strong,
+.footer-link strong,
+.frame_heading strong,
+.frame_time strong,
+.frame_time_entry strong,
+.register_age-requirement strong,
+.registration-info strong,
+.testimonial_author strong,
+.testimonial_location strong,
+.header strong,
+.main strong,
+h1 strong,
+h2 strong,
+h3 strong,
+h4 strong,
+h5 strong {
+  font-family: 'Open Sans Condensed';
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 .-mobile {
   position: absolute;
   left: -10000px;
@@ -838,6 +867,14 @@ input[type="password"].header_input {
   transition: margin 0.3s;
 }
 
+._logged-in .header_nav_primary {
+  width: 960px;
+}
+
+._logged-in .header_nav_secondary {
+  display: none;
+}
+
 /* Sticky Header */
 
 .header_nav._is-sticky {
@@ -971,11 +1008,27 @@ input[type="password"].header_input {
   border-radius: 3px;
 }
 
-.carousel-items {
+.video-frame_container {
   width: 630px;
   height: 398px;
+  position: relative;
+}
+
+.video-frame iframe,
+.video-frame object,
+.video-frame embed {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.carousel-items {
   overflow: hidden;
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .carousel-item {
@@ -997,16 +1050,6 @@ input[type="password"].header_input {
 
 .carousel-item._animated-in {
   opacity: 1;
-}
-
-.carousel-item iframe,
-.carousel-item object,
-.carousel-item embed {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .carousel-prev,
@@ -1732,7 +1775,7 @@ h2 .help {
   h1 {
     font-size: 25px;
     line-height: 30px;
-    margin-bottom: 26px;
+    margin-bottom: 30px;
     text-align: justify;
   }
 
@@ -1869,7 +1912,7 @@ h2 .help {
   }
 
   .header_nav_control_btn {
-    background-position: 0 -389px;
+    background-position: 0 -305px;
     width: 44px;
     height: 44px;
     margin: 5px 0 0 5px;
@@ -1898,7 +1941,7 @@ h2 .help {
 
   .header_nav_primary,
   .header_nav_secondary {
-    width: 100%;
+    width: 100% !important;
     z-index: 1;
   }
 
@@ -1908,11 +1951,17 @@ h2 .help {
     text-align: left;
     padding: 0 15px;
     font-size: 14px;
+    line-height: 44px;
+    height: 44px;
   }
 
   .header_nav_primary .nav_item + .nav_item {
     border-top: 1px solid #EE3900;
     border-left: 0;
+  }
+
+  .nav_item [class*="icon-"] {
+    margin-top: 9px;
   }
 
   /* Main */
@@ -1938,9 +1987,10 @@ h2 .help {
     margin-right: 0;
   }
 
-  .hero h2 {
-    font-size: 20px;
-    line-height: 28px;
+  .hero h2,
+  .hero._account .section_subtitle {
+    font-size: 18px;
+    line-height: 26px;
   }
 
   .hero_search_btn {
@@ -1952,16 +2002,18 @@ h2 .help {
     margin-top: 20px;
   }
 
-  /* Carousel */
+  .hero._account .section_subtitle {
+    margin-bottom: 20px;
+  }
 
-  .carousel-items {
+  /* Video Frame */
+
+  .video-frame_container {
     width: 160px;
-    height: 198px;
+    height: 145px;
   }
 
-  .carousel-item {
-    height: 198px;
-  }
+  /* Carousel */
 
   .carousel-next {
     right: -5px;
@@ -2000,16 +2052,60 @@ h2 .help {
 
   /* Bowling Benefit */
 
+  .bowling-benefit-ribbon {
+    padding: 20px 10px;
+  }
+
   .bowling-benefit {
-    font-size: 14px;
+    font-size: 13px;
     padding: 15px;
     height: 80px;
     line-height: 20px;
   }
 
+  /* Frame */
+
   .frame_arrow {
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  .frame .section {
+    padding: 20px;
+  }
+
+  /* Coupon */
+
+  .coupon_title {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .coupon_subtitle,
+  .coupon_title,
+  .coupon_terms,
+  .coupon_extra {
+    padding: 18px 18px;
+  }
+
+  .coupon_subtitle,
+  .coupon_terms,
+  .coupon_extra_item {
+    font-size: 13px;
+    line-height: 18px;
+  }
+
+  /* Form Control */
+
+  .form-control {
+    margin-top: 30px;
+  }
+
+  /* Help */
+
+  .help, .help .arrow {
+    background-image: url(../img/sprites_help_retina.png);
+    background-size: 30px 60
   }
 
   .footer {
@@ -2028,6 +2124,35 @@ h2 .help {
 
 /* Retina Image Assignment */
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media screen and (max-width: 480px) and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .header,
+  .header_logo,
+  .header_btn,
+  .header_input,
+  [class*="header_rep_"],
+  .header_nav_control_btn {
+    background-image: url(../img/sprites_header_mobile_retina.png);
+    background-size: 382px 349px;
+  }
+  .carousel-prev, .carousel-next, .carousel-nav-item, .carousel-nav-item_face {
+    background-image: url(../img/sprites_carousel_retina.png);
+    background-size: 132px 268px;
+  }
+  [class*="icon"] {
+    background-image: url(../img/sprites_icons_retina.png);
+    background-size: 156px 26px;
+  }
+  .form-validate-indicator {
+    background-image: url(../img/sprites_forms_retina.png);
+    background-size: 52px 26px;
+  }
+  .faq_btn {
+    background-image: url(../img/sprites_expander-btn_retina.png);
+    background-size: 60px 60px;
+  }
+  .frame_heading_toggle, .frame_time, .frame_arrow {
+    background-image: url(../img/sprites_frame_retina.png);
+    background-size: 90px 140px;
+  }
 }
 

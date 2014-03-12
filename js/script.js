@@ -1034,8 +1034,8 @@ function carousel(el) {
       carousel(el).select(index-1);
     },
     init: function () {
-      container.css('width',(items.size()*100) + '%');
-      items.css('width',(100/items.size()) + '%');
+      container.css('width',(items.size()*100) + '%').css('height','100%');
+      items.css('width',(100/items.size()) + '%').css('height','100%');
       nav.append((new Array(items.size()+1)).join(navItem));
       animate(nav.find('.carousel-nav-item').eq(0)).start();
       animate(items.eq(0)).start();
@@ -1101,34 +1101,56 @@ function fixHeader() {
   }
 }
 
+function touchmove() {
+  return {
+    start: function () {
+      $('body').addClass('_touchmove');
+    },
+    end: function () {
+      setTimeout(function () {
+        $('body').removeClass('_touchmove');
+      },300);
+    }
+  }
+}
+
 /* Expanders */
 
 function expander(el) {
+  function exe() {
+    var expander = el.closest('.expander');
+    var section  = expander.find('.expander_section').eq(0);
+    var btn      = expander.find('.expander_btn').eq(0);
+    expander.toggleClass('_active');
+    section.toggleClass('_active')
+    btn.toggleClass('_active');
+  }
   return {
     toggle: function () {
-      var expander = el.closest('.expander');
-      var section  = expander.find('.expander_section').eq(0);
-      var btn      = expander.find('.expander_btn').eq(0);
-      expander.toggleClass('_active');
-      section.toggleClass('_active')
-      btn.toggleClass('_active');
+      if (!$('body').hasClass('_touchmove')) {
+        exe();
+      }
     }
-  };
-};
+  }
+}
+
+function closePopouts(options) {
+  var active = $('._popout._animated-in');
+  var target = $(options.event.target);
+  if (active.size() && $('body').hasClass('_popout-safe')) {
+    animate(active).end();
+    $('body').removeClass('_popout-safe')
+  } else {
+    $('body').addClass('_popout-safe')
+  }
+  if (target.closest('.header_nav').size() < 1 && target.closest('.header_nav_control').size() < 1) {
+    $('#app-container').removeClass('_nav-open');
+  }
+}
 
 var dingoEvents = {
-  closePopouts: function (options) {
-    var active = $('._popout._animated-in');
-    var target = $(options.event.target);
-    if (active.size() && $('body').hasClass('_popout-safe')) {
-      animate(active).end();
-      $('body').removeClass('_popout-safe')
-    } else {
-      $('body').addClass('_popout-safe')
-    }
-    if (target.closest('.header_nav').size() < 1 && target.closest('.header_nav_control').size() < 1) {
-      $('#app-container').removeClass('_nav-open');
-    }
+  body: function (options) {
+    closePopouts(options);
   },
   'form-validate_keyup': function (options) {
     var condition = options.condition||'';
@@ -1184,7 +1206,7 @@ var dingoEvents = {
 
 // Click
 
-dingo.click['closePopouts'] = function (options) {
+dingo.click['body'] = function (options) {
   dingoEvents[options.dingo](options);
 }
 dingo.click['form-validate'] = function (options) {
@@ -1214,41 +1236,43 @@ dingo.click['header_nav_control'] = function (options) {
 
 // Touchstart
 
-dingo.touchstart['form-validate'] = function (options) {
-  dingoEvents[options.dingo + '_click'](options);
-}
-dingo.touchstart['form-validate-submit'] = function (options) {
-  dingoEvents[options.dingo](options);
-}
-dingo.touchstart['carouselNext'] = function (options) {
-  dingoEvents[options.dingo](options);
-}
-dingo.touchstart['carouselPrev'] = function (options) {
-  dingoEvents[options.dingo](options);
-}
-dingo.touchstart['carouselNav'] = function (options) {
-  dingoEvents[options.dingo](options);
-}
-dingo.touchstart['expander'] = function (options) {
-  dingoEvents[options.dingo](options);
-}
-dingo.touchstart['help'] = function (options) {
-  dingoEvents[options.dingo](options);
-}
 dingo.touchstart['header_nav_control'] = function (options) {
   dingoEvents[options.dingo](options);
+}
+dingo.touchend['body'] = function (options) {
+  dingoEvents[options.dingo](options);
+  touchmove().end()
 }
 
 // Touchend
 
-dingo.touchstart['closePopouts'] = function (options) {
+dingo.touchend['form-validate'] = function (options) {
+  dingoEvents[options.dingo + '_click'](options);
+}
+dingo.touchend['form-validate-submit'] = function (options) {
+  dingoEvents[options.dingo](options);
+}
+dingo.touchend['carouselNext'] = function (options) {
+  dingoEvents[options.dingo](options);
+}
+dingo.touchend['carouselPrev'] = function (options) {
+  dingoEvents[options.dingo](options);
+}
+dingo.touchend['carouselNav'] = function (options) {
+  dingoEvents[options.dingo](options);
+}
+dingo.touchend['expander'] = function (options) {
+  dingoEvents[options.dingo](options);
+}
+dingo.touchend['help'] = function (options) {
   dingoEvents[options.dingo](options);
 }
 
 // Touchmove
 
-dingo.touchmove['closePopouts'] = function (options) {
+dingo.touchmove['body'] = function (options) {
   fixHeader();
+  touchmove().start();
 }
 
 // Change

@@ -17,16 +17,35 @@
   <body class="_logged-out" data-dingo="body"> <!-- Toggle _logged-in to display the logout controls -->
     <div class="app-container" id="app-container">
       <div data-template="header">
-        active-page: login-error
+        active-page: login
       </div>
       <div class="main">
         <div class="container">
           <div class="section">
-            <h1 class="center">Your password has been reset</h1>
-            <h3 class="center">Click <a href="account.html">here</a> to access your account.</h3>
+            <h1 class="center">Login</h1>
+            <form class="form-validate-container mrow">
+              <div class="form-validate-group">
+                <label class="block" for="login-email">Email<span class="form-validate-indicator"></span></label>
+                <input class="block" type="text" name="login-email" data-dingo="form-validate">
+                <div class="form-validate-prompt">
+                  <div class="form-validate-prompt_text">Enter A Valid Email</div>
+                </div>
+              </div>
+              <div class="form-validate-group mrow">
+                <label class="block" for="login-password">Password<span class="form-validate-indicator"></span></label>
+                <input class="block" type="password" name="login-password" data-dingo="form-validate">
+                <div class="form-validate-prompt">
+                  <div class="form-validate-prompt_text">Enter A Valid Password</div>
+                </div>
+              </div>
+              <div class="mrow">
+                <a class="btn _green mrow" href="forgot-password.html">Login</a>
+                <a class="btn _blue mrow" href="forgot-password.html">I forgot my password</a>
+              </div>
+            </form>
           </div> <!-- Section -->
           <div data-template="footer">
-            active-page: login-error
+            active-page: login
           </div>
         </div>
       </div>

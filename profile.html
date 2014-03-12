@@ -14,7 +14,7 @@
     <link rel="template" href="templates/templates.html">
     <link rel="stylesheet" href="css/styles.css">
   </head>
-  <body class="_logged-in" data-dingo="closePopouts"> <!-- Toggle _logged-in / _logged-out to toggle the logout controls -->
+  <body class="_logged-in" data-dingo="body"> <!-- Toggle _logged-in / _logged-out to toggle the logout controls -->
     <div class="app-container" id="app-container">
       <!-- Facebook sharing SDK -->
       <div id="fb-root"></div>
@@ -33,12 +33,12 @@
           </div>
           <div class="section">
             <h1>Hi Andy</h1>
-            <form class="g14 col1of2 form-validate-container">
+            <form class="g14 m24 mrow col1of2 form-validate-container">
               <div class="frame">
                 <div class="section">
                   <h2>Parent Account Information</h2>
                   <div class="row">
-                    <div class="g12 col1of2-sm">
+                    <div class="g12 m24 mrow-sm col1of2-sm">
                       <div class="form-validate-group">
                         <label class="block" for="first-name">First Name<span class="form-validate-indicator"></span></label>
                         <input class="block" type="text" name="first-name" data-dingo="form-validate">
@@ -47,7 +47,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="g12 col2of2-sm">
+                    <div class="g12 m24 mrow-sm col2of2-sm">
                       <div class="form-validate-group">
                         <label class="block" for="last-name">Last Name<span class="form-validate-indicator"></span></label>
                         <input class="block" type="text" name="last-name" data-dingo="form-validate">
@@ -62,7 +62,7 @@
               <div class="frame">
                 <div class="section">
                   <h2>Contact Information</h2>
-                  <div class="row">
+                  <div class="row mrow-sm">
                     <div class="form-validate-group">
                       <label class="block" for="phone">Phone Number<span class="form-validate-indicator"></span></label>
                       <input class="block" type="text" name="phone" data-dingo="form-validate">
@@ -71,7 +71,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="row">
+                  <div class="row mrow-sm">
                     <div class="form-validate-group">
                       <label class="block" for="email">Email Address<span class="form-validate-indicator"></span></label>
                       <input class="block" type="text" name="email" data-dingo="form-validate">
@@ -85,7 +85,7 @@
               <div class="frame">
                 <div class="section">
                   <h2>Security</h2>
-                  <div class="row">
+                  <div class="row mrow-sm">
                     <div class="form-validate-group">
                       <label class="block" for="password">New Password<span class="form-validate-indicator"></span></label>
                       <input class="block" type="password" name="password" data-dingo="form-validate{condition:active}">
@@ -95,7 +95,7 @@
                     </div>
                     <span class="small">Must be atleast 6 characters long</span>
                   </div>
-                  <div class="row">
+                  <div class="row mrow-sm">
                     <div class="form-validate-group">
                       <label class="block" for="confirm-password">Confirm New Password<span class="form-validate-indicator"></span></label>
                       <input class="block" type="password" name="confirm-password" data-dingo="form-validate{condition:active}">
@@ -110,7 +110,7 @@
                 <div class="section">
                   <div class="row-xl">
                     <h2>Address</h2>
-                    <div class="row">
+                    <div class="row mrow-sm">
                       <div class="form-validate-group">
                         <label class="block" for="street-address">Street Address<span class="form-validate-indicator"></span></label>
                         <input class="block" type="text" name="street-address" data-dingo="form-validate">
@@ -119,8 +119,8 @@
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="g12 col1of2-sm">
+                    <div class="row mrow-sm">
+                      <div class="g12 m24 mrow-sm col1of2-sm">
                         <div class="form-validate-group">
                           <label class="block" for="city">City<span class="form-validate-indicator"></span></label>
                           <input class="block" type="text" name="city" data-dingo="form-validate">
@@ -129,7 +129,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="g12 col2of2-sm">
+                      <div class="g12 m24 mrow-sm col2of2-sm">
                         <div class="form-validate-group">
                           <label class="block" for="select-state">State / Province<span class="form-validate-indicator"></span></label>
                           <select class="block" name="select-state" data-fill="location" data-dingo="form-validate">
@@ -141,8 +141,8 @@
                         </div>
                       </div>
                     </div> <!-- row -->
-                    <div class="row">
-                      <div class="g12 col1of2">
+                    <div class="row mrow-sm">
+                      <div class="g12 m24 col1of2">
                         <div class="form-validate-group">
                           <label class="block" for="zip-postal">Zip / Postal Code<span class="form-validate-indicator"></span></label>
                           <input class="block" type="text" name="zip-postal" data-dingo="form-validate">
@@ -159,7 +159,7 @@
                 <button class="btn _green" data-dingo="form-validate-submit"><i class="icon-check"></i>Save Profile</button>
               </div>
             </form> <!-- form -->
-            <div class="g10 col2of2">
+            <div class="g10 m24 mrow-xl col2of2">
               <div class="frame">
                 <div class="section">
                   <h2>Fairview Lanes</h2>
