@@ -1089,6 +1089,8 @@ function sticky() {
   }
 }
 
+// For mobile devices
+// This will make the header smaller when users scroll
 function fixHeader() {
   var top = $(window).scrollTop();
   var body = $('body');

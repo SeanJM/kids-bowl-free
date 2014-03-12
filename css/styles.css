@@ -1854,8 +1854,8 @@ h2 .help {
   .header_nav {
     position: fixed;
     top: 0;
-    left: -200px;
-    width: 200px;
+    left: -220px;
+    width: 220px;
     height: 100%;
     margin-left: 0;
     z-index: 2;
@@ -1880,11 +1880,11 @@ h2 .help {
   }
   .app-container._nav-open .header,
   .app-container._nav-open .main {
-    margin-left: 200px;
+    margin-left: 220px;
   }
 
   .app-container._nav-open .header_nav_control {
-    left: 200px;
+    left: 220px;
   }
 
   .header_nav .container {
